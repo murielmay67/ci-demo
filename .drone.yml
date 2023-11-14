@@ -23,6 +23,7 @@ steps:
     # https://developer.harness.io/docs/continuous-integration/use-ci/use-drone-plugins/drone-email-plugin/
     # https://plugins.drone.cool/plugins/email
     # https://plugins.drone.io/plugins/email
+    # https://github.com/drillster/drone-email
   - name: notify
     image: drillster/drone-email
     settings:
@@ -35,16 +36,12 @@ steps:
       recipients: xx2@19980901.xyz
       # recipients_file
       subject: 'Drone Build {{ build.number }} for {{ repo.name }}'
-      # body: |
-      #   {{#success build.status}}
-      #     Build {{ build.number }} succeeded for {{ repo.name }}
-      #   {{else}}
-      #     Build {{ build.number }} failed for {{ repo.name }}
-      #   {{/success}}
-      body: file:///drone/src/someFile.html
-      # body: 'file:///drone/src/someFile.txt'
-      attachment:
+      body: 'build {{ build.number }} for {{ repo.name }} {{ build.status }}'
+      # attachment:
+      #   - /drone/src/someFile.txt
+      attachments:
         - /drone/src/someFile.txt
+        - /drone/src/someFile.html
     when:
       status:
         - success
