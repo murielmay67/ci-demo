@@ -23,14 +23,17 @@ steps:
     # https://developer.harness.io/docs/continuous-integration/use-ci/use-drone-plugins/drone-email-plugin/
     # https://plugins.drone.cool/plugins/email
     # https://plugins.drone.io/plugins/email
-  - name: sendmail
+  - name: notify
     image: drillster/drone-email
     settings:
-      host: smtp.some-server.com
-      username: foo
-      password: bar
-      from: drone@your-domain.com
+      host: smtp.qiye.aliyun.com
+      port: 465
+      username: notifications@yanhao.ren
+      password: 7u57E3JQZz9W7HE2
+      from: notifications@yanhao.ren
+      recipients: me@yanhao.ren, 2@19980901.xyz
     when:
       status:
-        - failure
         - success
+        - changed
+        - failure
