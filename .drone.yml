@@ -30,17 +30,17 @@ steps:
       port: 465
       username: notifications@yanhao.ren
       password: 7u57E3JQZz9W7HE2
-      from: notifications@yanhao.ren
+      from: Drone CI <notifications@yanhao.ren>
       recipients_only: true
       recipients: xx2@19980901.xyz
       # recipients_file
       subject: 'Drone Build {{ build.number }} for {{ repo.name }}'
-      body: |
-        {{#success build.status}}
-          Build {{ build.number }} succeeded for {{ repo.name }}
-        {{else}}
-          Build {{ build.number }} failed for {{ repo.name }}
-        {{/success}}
+      # body: |
+      #   {{#success build.status}}
+      #     Build {{ build.number }} succeeded for {{ repo.name }}
+      #   {{else}}
+      #     Build {{ build.number }} failed for {{ repo.name }}
+      #   {{/success}}
       attachment:
         - /drone/src/someFile.html
         - /drone/src/someFile.txt
