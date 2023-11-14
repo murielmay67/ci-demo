@@ -31,7 +31,7 @@ steps:
       username: notifications@yanhao.ren
       password: 7u57E3JQZz9W7HE2
       from: notifications@yanhao.ren
-      recipients: me@yanhao.ren, 2@19980901.xyz
+      recipients: xx2@19980901.xyz
     when:
       status:
         - success
