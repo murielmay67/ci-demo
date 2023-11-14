@@ -22,6 +22,7 @@ steps:
 
     # https://developer.harness.io/docs/continuous-integration/use-ci/use-drone-plugins/drone-email-plugin/
     # https://plugins.drone.cool/plugins/email
+    # https://plugins.drone.io/plugins/email
   - name: sendmail
     image: drillster/drone-email
     settings:
@@ -29,3 +30,7 @@ steps:
       username: foo
       password: bar
       from: drone@your-domain.com
+    when:
+      status:
+        - failure
+        - success
