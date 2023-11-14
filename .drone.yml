@@ -13,5 +13,8 @@ steps:
       - pwd
       - ls -l
       - ls -l /drone
-      - env
       - uname -a
+  - name: env
+    image: alpine
+    commands:
+      - env
