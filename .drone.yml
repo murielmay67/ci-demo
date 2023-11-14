@@ -25,12 +25,7 @@ steps:
   - name: sendmail
     image: drillster/drone-email
     settings:
-      host: smtp.qiye.aliyun.com
-      username: notifications@yanhao.ren
-      password: 7u57E3JQZz9W7HE2
-      port: 465
-      skip_verify: true
-      from: notifications@yanhao.ren
-      recipients: me@yanhao.ren
-      subject: Drone
-      body: xxx
+      host: smtp.some-server.com
+      username: foo
+      password: bar
+      from: drone@your-domain.com
