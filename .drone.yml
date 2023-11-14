@@ -35,7 +35,7 @@ steps:
       recipients_only: true
       recipients: xx2@19980901.xyz
       # recipients_file
-      subject: 'Drone Build {{ build.number }} for {{ repo.name }}'
+      # subject: 'Drone Build {{ build.number }} for {{ repo.name }}'
       body: 'build {{ build.number }} for {{ repo.name }} {{ build.status }}'
       # attachment:
       #   - /drone/src/someFile.txt
