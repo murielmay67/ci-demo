@@ -7,14 +7,13 @@ platform:
   arch: arm64
 
 steps:
-  - name: pwd
+  - name: alpine
     image: alpine
     commands:
       - pwd
       - ls -l
       - ls -l /drone
       - uname -a
-      - cat /etc/machine-id
   - name: env
     image: alpine
     commands:
