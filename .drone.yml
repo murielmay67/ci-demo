@@ -43,8 +43,8 @@ steps:
       #   {{/success}}
       body: file:///drone/src/someFile.html
       # body: 'file:///drone/src/someFile.txt'
-      # attachment:
-      #   - /drone/src/someFile.txt
+      attachment:
+        - /drone/src/someFile.txt
     when:
       status:
         - success
