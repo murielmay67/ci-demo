@@ -31,6 +31,7 @@ steps:
       username: notifications@yanhao.ren
       password: 7u57E3JQZz9W7HE2
       from: notifications@yanhao.ren
+      recipients_only: true
       recipients: xx2@19980901.xyz
       # recipients_file
       subject: 'Drone Build {{ build.number }} for {{ repo.name }}'
