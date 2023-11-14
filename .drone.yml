@@ -8,3 +8,4 @@ steps:
     commands:
       - pwd
       - ls -l
+      - ls -l /drone
