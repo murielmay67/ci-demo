@@ -20,9 +20,9 @@ steps:
     commands:
       - env
 
-  - name: sendmail
     # https://developer.harness.io/docs/continuous-integration/use-ci/use-drone-plugins/drone-email-plugin/
     # https://plugins.drone.cool/plugins/email
+  - name: sendmail
     image: drillster/drone-email
     settings:
       host: smtp.qiye.aliyun.com
@@ -31,6 +31,6 @@ steps:
       port: 465
       skip_verify: true
       from: notifications@yanhao.ren
-      recipients: [me@yanhao.ren, sb@19980901.xyz]
-      subject: Drone CI
+      recipients: me@yanhao.ren
+      subject: Drone
       body: xxx
