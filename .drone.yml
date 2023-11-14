@@ -42,7 +42,7 @@ steps:
       #     Build {{ build.number }} failed for {{ repo.name }}
       #   {{/success}}
       # body: file:///drone/src/someFile.txt
-      body: 'The File Content is: /drone/src/someFile.txt'
+      body: 'The File Content is: file:///drone/src/someFile.txt'
       # attachment:
       #   - /drone/src/someFile.txt
     when:
