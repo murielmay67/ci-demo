@@ -43,6 +43,7 @@ steps:
         {{/success}}
       attachment:
         - /drone/src/someFile.html
+        - /drone/src/someFile.txt
     when:
       status:
         - success
