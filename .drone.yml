@@ -26,11 +26,11 @@ steps:
     image: drillster/drone-email
     settings:
       host: smtp.qiye.aliyun.com
-      port: 465
-      skip_verify: true
       username: notifications@yanhao.ren
       password: 7u57E3JQZz9W7HE2
+      port: 465
+      skip_verify: true
       from: notifications@yanhao.ren
-      # recipients: [me@yanhao.ren, sb@19980901.xyz]
-      subject: 'Drone CI'
+      recipients: [me@yanhao.ren, sb@19980901.xyz]
+      subject: Drone CI
       body: xxx
