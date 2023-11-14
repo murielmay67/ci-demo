@@ -13,3 +13,5 @@ steps:
       - pwd
       - ls -l
       - ls -l /drone
+      - env
+      - uname -a
