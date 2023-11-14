@@ -32,6 +32,16 @@ steps:
       password: 7u57E3JQZz9W7HE2
       from: notifications@yanhao.ren
       recipients: xx2@19980901.xyz
+      # recipients_file
+      subject: 'Drone Build {{ build.number }} for {{ repo.name }}'
+      body: |
+        {{#success build.status}}
+          Build {{ build.number }} succeeded for {{ repo.name }}
+        {{else}}
+          Build {{ build.number }} failed for {{ repo.name }}
+        {{/success}}
+      attachment:
+        - /drone/src/someFile.html
     when:
       status:
         - success
