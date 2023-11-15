@@ -4,7 +4,7 @@ name: default
 
 platform:
   os: linux
-  arch: arm
+  arch: arm64
 
 steps:
   - name: alpine
@@ -20,12 +20,12 @@ steps:
     commands:
       - env
 
+  - name: notify
     # https://developer.harness.io/docs/continuous-integration/use-ci/use-drone-plugins/drone-email-plugin/
     # https://plugins.drone.cool/plugins/email
     # https://plugins.drone.io/plugins/email
     # https://github.com/drillster/drone-email
     # https://github.com/Famine-Life/drone-email-defaults-ZN
-  - name: notify
     # docker buildx build --file Dockerfile --platform linux/amd64,linux/arm64/v7,linux/arm64 -t yanhao98/drone-email:latest . --push
     image: yanhao98/drone-email
     # image: drillster/drone-email
