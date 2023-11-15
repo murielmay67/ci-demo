@@ -1,11 +1,9 @@
 kind: pipeline
 type: docker
 name: default
-
 platform:
   os: linux
   arch: arm64
-
 steps:
   - name: alpine
     image: alpine
@@ -44,37 +42,19 @@ steps:
       - pwd
       - ls -l
   - name: notify
-    # https://developer.harness.io/docs/continuous-integration/use-ci/use-drone-plugins/drone-email-plugin/
-    # https://plugins.drone.cool/plugins/email
-    # https://plugins.drone.io/plugins/email
-    # https://github.com/drillster/drone-email
-    # https://github.com/Famine-Life/drone-email-defaults-ZN
-    # docker buildx build --file Dockerfile --platform linux/amd64,linux/arm64/v7,linux/arm64 -t yanhao98/drone-email:latest . --push
     image: yanhao98/drone-email
-    # image: drillster/drone-email
     settings:
+      from.name: Drone
+      from.address: notifications@yanhao.ren
       host: smtp.qiye.aliyun.com
       port: 465
       username: notifications@yanhao.ren
       password: 7u57E3JQZz9W7HE2
-      from: Drone CI <notifications@yanhao.ren>
       recipients_only: true
       recipients: xx2@19980901.xyz
-      # recipients_file
-      # subject: 'Drone Build {{ build.number }} for {{ repo.name }}'
-      # body: 'build {{ build.number }} for {{ repo.name }} {{ build.status }}'
-      # attachment:
-      #   - /drone/src/someFile.txt
       attachments:
         - /drone/src/someFile.txt
         - /drone/src/someFile.html
-    # when:
-    #   status:
-    #     - success
-    #     - changed
-    #     - failure
 depends_on:
-  # https://docs.drone.io/pipeline/configuration/#multiple-platforms
-  # https://docs.drone.io/pipeline/configuration/#graph-execution
   - default
   - env
