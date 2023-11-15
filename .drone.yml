@@ -15,11 +15,6 @@ steps:
       - ls -l /drone
       - uname -a
 
-  - name: env
-    image: alpine
-    commands:
-      - env
-
   - name: notify
     # https://developer.harness.io/docs/continuous-integration/use-ci/use-drone-plugins/drone-email-plugin/
     # https://plugins.drone.cool/plugins/email
@@ -50,3 +45,16 @@ steps:
     #     - success
     #     - changed
     #     - failure
+
+---
+kind: pipeline
+type: docker
+name: default
+platform:
+  os: linux
+  arch: arm64
+steps:
+  - name: env
+    image: alpine
+    commands:
+      - env
