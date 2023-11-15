@@ -14,6 +14,8 @@ steps:
       - ls -l
       - ls -l /drone
       - uname -a
+      - touch /drone/src/created-by-drone.txt
+      - ls -l
 
 ---
 kind: pipeline
@@ -36,6 +38,11 @@ platform:
   os: linux
   arch: arm64
 steps:
+  - name: alpine
+    image: alpine
+    commands:
+      - pwd
+      - ls -l
   - name: notify
     # https://developer.harness.io/docs/continuous-integration/use-ci/use-drone-plugins/drone-email-plugin/
     # https://plugins.drone.cool/plugins/email
