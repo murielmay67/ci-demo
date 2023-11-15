@@ -2,9 +2,9 @@ kind: pipeline
 type: docker
 name: default
 
-# platform:
-#   os: linux
-#   arch: arm64
+platform:
+  os: linux
+  arch: arm64
 
 steps:
   - name: alpine
@@ -24,8 +24,10 @@ steps:
     # https://plugins.drone.cool/plugins/email
     # https://plugins.drone.io/plugins/email
     # https://github.com/drillster/drone-email
+    # https://github.com/Famine-Life/drone-email-defaults-ZN
   - name: notify
-    image: drillster/drone-email
+    image: yanhao98/drone-email:arm
+    # image: drillster/drone-email
     settings:
       host: smtp.qiye.aliyun.com
       port: 465
@@ -36,14 +38,14 @@ steps:
       recipients: xx2@19980901.xyz
       # recipients_file
       # subject: 'Drone Build {{ build.number }} for {{ repo.name }}'
-      body: 'build {{ build.number }} for {{ repo.name }} {{ build.status }}'
+      # body: 'build {{ build.number }} for {{ repo.name }} {{ build.status }}'
       # attachment:
       #   - /drone/src/someFile.txt
       attachments:
         - /drone/src/someFile.txt
         - /drone/src/someFile.html
-    when:
-      status:
-        - success
-        - changed
-        - failure
+    # when:
+    #   status:
+    #     - success
+    #     - changed
+    #     - failure
