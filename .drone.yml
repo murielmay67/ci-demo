@@ -44,8 +44,8 @@ steps:
   - name: notify
     image: yanhao98/drone-email
     settings:
-      from.name: Drone
-      from.address: notifications@yanhao.ren
+      from.name: Drone CI
+      from.address: noreply@yanhao.ren
       host: smtp.qiye.aliyun.com
       port: 465
       username: notifications@yanhao.ren
