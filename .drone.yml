@@ -26,8 +26,9 @@ steps:
     # https://github.com/drillster/drone-email
     # https://github.com/Famine-Life/drone-email-defaults-ZN
   - name: notify
-    # image: yanhao98/drone-email:arm
-    image: drillster/drone-email
+    # docker buildx build --file Dockerfile --platform linux/amd64,linux/arm64/v7,linux/arm64 -t yanhao98/drone-email:latest . --push
+    image: yanhao98/drone-email
+    # image: drillster/drone-email
     settings:
       host: smtp.qiye.aliyun.com
       port: 465
