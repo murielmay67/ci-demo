@@ -14,6 +14,8 @@ steps:
       - uname -a
       - touch /drone/src/created-by-drone.txt
       - ls -l
+      - apk add curl
+      - curl ip.sb
 
 ---
 kind: pipeline
@@ -36,11 +38,6 @@ platform:
   os: linux
   arch: arm64
 steps:
-  - name: alpine
-    image: alpine
-    commands:
-      - pwd
-      - ls -l
   - name: notify
     image: yanhao98/drone-email
     settings:
