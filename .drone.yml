@@ -41,6 +41,7 @@ steps:
     #     path: /files
     commands:
       - pwd
+      - mkdir -p /files
       - touch /files/created-by-drone.txt
   - name: volume-test-2
     image: alpine
