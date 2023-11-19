@@ -46,7 +46,8 @@ steps:
       host: smtp.qiye.aliyun.com
       port: 465
       username: notifications@yanhao.ren
-      password: 7u57E3JQZz9W7HE2
+      password:
+        from_secret: email_password
       recipients_only: true
       recipients: xx2@19980901.xyz
       attachments:
