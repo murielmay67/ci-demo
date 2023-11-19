@@ -1,4 +1,4 @@
---- # 1
+---
 kind: pipeline
 type: docker
 name: alpine1
@@ -18,7 +18,7 @@ steps:
       - apk add curl
       - curl ip.sb
 
---- # 2
+---
 kind: pipeline
 type: docker
 name: alpine2
@@ -33,7 +33,7 @@ steps:
       - apk add curl
       - curl ip.sb
 
---- # 3
+---
 kind: pipeline
 type: docker
 name: alpine3
@@ -47,7 +47,7 @@ steps:
       - apk add curl
       - curl ip.sb
 
---- # 邮件通知
+---
 name: notify
 kind: pipeline
 type: docker
