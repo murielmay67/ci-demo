@@ -12,7 +12,7 @@ steps:
       - curl ip.sb
       - pwd
       - ls -l
-      - touch /drone/src/created-by-drone.txt
+      - touch /drone/src/created-by-drone-0.txt
       - ls -l
       - date
 
@@ -24,7 +24,8 @@ steps:
       - pwd
       - ls -l
       - date
----
+
+--- # volumes
 kind: pipeline
 type: docker
 name: volume-test
@@ -36,25 +37,27 @@ platform:
 steps:
   - name: volume-test-1
     image: alpine
-    # volumes:
-    #   - name: files
-    #     path: /files
+    volumes:
+      - name: files
+        path: /files
     commands:
       - pwd
-      - mkdir -p /files
-      - touch /files/created-by-drone.txt
+      - touch ./created-by-drone-1.txt
+      - ls -l
+      - touch /files/created-by-drone-2.txt
   - name: volume-test-2
     image: alpine
-    # volumes:
-    #   - name: files
-    #     path: /files
+    volumes:
+      - name: files
+        path: /files
     commands:
       - pwd
+      - ls -l
       - ls -l /files
 # https://docs.drone.io/pipeline/kubernetes/syntax/volumes/temporary/
-# volumes:
-#   - name: files
-#     temp: {}
+volumes:
+  - name: files
+    temp: {}
 
 --- # 邮件通知
 kind: pipeline
