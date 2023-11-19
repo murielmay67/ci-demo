@@ -11,14 +11,14 @@ steps:
       - name: cache
         path: /drone/src
     commands:
+      - apk add curl
+      - curl ip.sb
       - pwd
       - ls -l
       - ls -l /drone
-      - uname -a
       - touch /drone/src/created-by-drone.txt
       - ls -l
-      - apk add curl
-      - curl ip.sb
+      - date
 
 --- #############################
 kind: pipeline
@@ -40,24 +40,9 @@ steps:
       - ls -l
       - apk add curl
       - curl ip.sb
+      - date
 depends_on:
   - default
-
---- #############################
-kind: pipeline
-type: docker
-name: alpine-2
-clone:
-  disable: true
-platform:
-  os: linux
-  arch: arm64
-steps:
-  - name: alpine
-    image: alpine
-    commands:
-      - apk add curl
-      - curl ip.sb
 
 --- # #############################
 kind: pipeline
