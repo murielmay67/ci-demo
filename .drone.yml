@@ -5,7 +5,7 @@ platform:
   os: linux
   arch: arm64
 steps:
-  - name: alpine
+  - name: default-1
     image: alpine
     volumes:
       - name: cache
@@ -15,54 +15,30 @@ steps:
       - curl ip.sb
       - pwd
       - ls -l
-      - ls -l /drone
       - touch /drone/src/created-by-drone.txt
       - ls -l
       - date
-
---- #############################
-kind: pipeline
-type: docker
-name: alpine-1
-clone:
-  disable: true
-platform:
-  os: linux
-  arch: arm64
-steps:
-  - name: alpine
+  - name: default-2
     image: alpine
     volumes:
       - name: cache
         path: /drone/src
     commands:
-      - pwd
-      - ls -l
       - apk add curl
       - curl ip.sb
+      - pwd
+      - ls -l
       - date
-depends_on:
-  - default
-
---- # #############################
-kind: pipeline
-type: docker
-name: env
-clone:
-  disable: true
-platform:
-  os: linux
-  arch: arm64
-steps:
-  - name: env
-    image: alpine
-    commands:
-      - env
+volumes:
+  - name: cache
+    temp: {}
 
 --- # 邮件通知
 kind: pipeline
 type: docker
 name: notify
+clone:
+  disable: true
 platform:
   os: linux
   arch: arm64
@@ -84,8 +60,3 @@ steps:
         - /drone/src/someFile.html
 depends_on:
   - default
-  - env
-
-volumes:
-  - name: cache
-    temp: {}
