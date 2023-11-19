@@ -89,7 +89,7 @@ depends_on:
 kind: pipeline
 type: docker
 name: docker
-# drone exec --pipeline docker
+# drone exec --pipeline docker --trusted
 platform:
   os: linux
   arch: arm64
@@ -108,7 +108,10 @@ steps:
       password:
         from_secret: docker_password
     commands:
-      - docker ps -a
+      - ls -l
+      - docker buildx create --use
+      - docker buildx build --platform linux/amd64,linux/arm64 -t yanhao98/drone-test-image --push .
+      # - docker build -t yanhao98/drone-test-image . --platform linux/amd64,linux/arm64
 volumes:
   - name: dockersock
     host:
