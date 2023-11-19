@@ -1,6 +1,6 @@
+name: alpine1
 kind: pipeline
 type: docker
-name: default
 platform:
   os: linux
   arch: arm64
@@ -18,9 +18,9 @@ steps:
       - curl ip.sb
 
 ---
+name: alpine2
 kind: pipeline
 type: docker
-name: env
 platform:
   os: linux
   arch: arm64
@@ -29,11 +29,27 @@ steps:
     image: alpine
     commands:
       - env
+      - apk add curl
+      - curl ip.sb
 
 ---
+name: alpine3
 kind: pipeline
 type: docker
+platform:
+  os: linux
+  arch: arm64
+steps:
+  - name: env
+    image: alpine
+    commands:
+      - apk add curl
+      - curl ip.sb
+
+---
 name: notify
+kind: pipeline
+type: docker
 platform:
   os: linux
   arch: arm64
