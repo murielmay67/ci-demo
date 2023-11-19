@@ -45,7 +45,7 @@ steps:
     commands:
       - pwd
       - touch /files/created-by-drone.txt
-  - name: volume-test-1
+  - name: volume-test-2
     image: alpine
     commands:
       - pwd
