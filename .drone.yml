@@ -8,8 +8,8 @@ steps:
   - name: default-1
     image: alpine
     volumes:
-      - name: cache
-        path: /drone/src
+      - name: files
+        path: /
     commands:
       - apk add curl
       - curl ip.sb
@@ -18,27 +18,47 @@ steps:
       - touch /drone/src/created-by-drone.txt
       - ls -l
       - date
+
   - name: default-2
     image: alpine
-    volumes:
-      - name: cache
-        path: /drone/src
     commands:
       - apk add curl
       - curl ip.sb
       - pwd
       - ls -l
       - date
+---
+kind: pipeline
+type: docker
+name: volume-test
+clone:
+  disable: true
+platform:
+  os: linux
+  arch: arm64
+steps:
+  - name: volume-test-1
+    image: alpine
+    volumes:
+      - name: files
+        path: /files
+    commands:
+      - pwd
+      - touch /files/created-by-drone.txt
+  - name: volume-test-1
+    image: alpine
+    commands:
+      - pwd
+      - ls -l /files
+# https://docs.drone.io/pipeline/kubernetes/syntax/volumes/temporary/
 volumes:
-  - name: cache
+  - name: files
     temp: {}
 
 --- # 邮件通知
 kind: pipeline
 type: docker
 name: notify
-clone:
-  disable: true
 platform:
   os: linux
   arch: arm64
