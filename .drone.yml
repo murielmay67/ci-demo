@@ -1,4 +1,3 @@
---- # default
 kind: pipeline
 type: docker
 name: default
@@ -8,6 +7,9 @@ platform:
 steps:
   - name: alpine
     image: alpine
+    volumes:
+      - name: cache
+        path: /drone/src
     commands:
       - pwd
       - ls -l
@@ -18,24 +20,33 @@ steps:
       - apk add curl
       - curl ip.sb
 
---- # alpine-1 ip.sb
+--- #############################
 kind: pipeline
 type: docker
 name: alpine-1
+clone:
+  disable: true
 platform:
   os: linux
   arch: arm64
 steps:
   - name: alpine
     image: alpine
+    volumes:
+      - name: cache
+        path: /drone/src
     commands:
+      - pwd
+      - ls -l
       - apk add curl
       - curl ip.sb
 
---- # alpine-2 ip.sb
+--- #############################
 kind: pipeline
 type: docker
 name: alpine-2
+clone:
+  disable: true
 platform:
   os: linux
   arch: arm64
@@ -46,10 +57,12 @@ steps:
       - apk add curl
       - curl ip.sb
 
---- # env
+--- # #############################
 kind: pipeline
 type: docker
 name: env
+clone:
+  disable: true
 platform:
   os: linux
   arch: arm64
@@ -85,3 +98,7 @@ steps:
 depends_on:
   - default
   - env
+
+volumes:
+  - name: cache
+    temp: {}
