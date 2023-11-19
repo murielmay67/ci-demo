@@ -47,6 +47,9 @@ steps:
       - touch /files/created-by-drone.txt
   - name: volume-test-2
     image: alpine
+    volumes:
+      - name: files
+        path: /files
     commands:
       - pwd
       - ls -l /files
