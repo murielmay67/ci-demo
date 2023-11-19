@@ -89,7 +89,7 @@ depends_on:
 kind: pipeline
 type: docker
 name: docker
-# drone exec --pipeline docker --trusted
+# drone exec --pipeline docker --trusted --secret-file=.drone.sec
 platform:
   os: linux
   arch: arm64
@@ -106,17 +106,14 @@ steps:
     environment:
       DOCKER_PASSWORD:
         from_secret: docker_password
-    # settings:
-    #   username: yanhao98
-    #   password:
-    #     from_secret: docker_password
     commands:
-      - env
-      - echo $DOCKER_PASSWORD
-      - ls -l
       - echo $DOCKER_PASSWORD | docker login -u yanhao98 --password-stdin
-      # - docker buildx create --use
-      # - docker buildx build --platform linux/amd64,linux/arm64 -t yanhao98/drone-test-image --push .
+      #     WARNING! Your password will be stored unencrypted in /root/.docker/config.json.
+      #     Configure a credential helper to remove this warning. See
+      #     https://docs.docker.com/engine/reference/commandline/login/#credentials-store
+      - docker buildx create --use
+      - docker buildx build --platform linux/amd64,linux/arm64 -t yanhao98/drone-test-image --push .
+      - docker logout
 volumes:
   - name: dockersock
     host:
