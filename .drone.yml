@@ -7,9 +7,6 @@ platform:
 steps:
   - name: default-1
     image: alpine
-    volumes:
-      - name: files
-        path: /
     commands:
       - apk add curl
       - curl ip.sb
@@ -39,24 +36,24 @@ platform:
 steps:
   - name: volume-test-1
     image: alpine
-    volumes:
-      - name: files
-        path: /files
+    # volumes:
+    #   - name: files
+    #     path: /files
     commands:
       - pwd
       - touch /files/created-by-drone.txt
   - name: volume-test-2
     image: alpine
-    volumes:
-      - name: files
-        path: /files
+    # volumes:
+    #   - name: files
+    #     path: /files
     commands:
       - pwd
       - ls -l /files
 # https://docs.drone.io/pipeline/kubernetes/syntax/volumes/temporary/
-volumes:
-  - name: files
-    temp: {}
+# volumes:
+#   - name: files
+#     temp: {}
 
 --- # 邮件通知
 kind: pipeline
