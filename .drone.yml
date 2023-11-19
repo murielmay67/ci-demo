@@ -40,6 +40,8 @@ steps:
       - ls -l
       - apk add curl
       - curl ip.sb
+depends_on:
+  - default
 
 --- #############################
 kind: pipeline
