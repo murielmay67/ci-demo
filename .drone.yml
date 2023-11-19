@@ -104,7 +104,7 @@ steps:
       - name: dockersock
         path: /var/run/docker.sock
     environment:
-      PASSWORD:
+      DOCKER_PASSWORD:
         from_secret: docker_password
     # settings:
     #   username: yanhao98
@@ -112,9 +112,9 @@ steps:
     #     from_secret: docker_password
     commands:
       - env
-      - echo $PASSWORD
+      - echo $DOCKER_PASSWORD
       - ls -l
-      - docker login -u yanhao98 -p $PASSWORD
+      - echo $DOCKER_PASSWORD | docker login -u yanhao98 --password-stdin
       # - docker buildx create --use
       # - docker buildx build --platform linux/amd64,linux/arm64 -t yanhao98/drone-test-image --push .
 volumes:
