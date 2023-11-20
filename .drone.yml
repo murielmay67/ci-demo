@@ -116,8 +116,9 @@ steps:
       #     Configure a credential helper to remove this warning. See
       #     https://docs.docker.com/engine/reference/commandline/login/#credentials-store
       # - docker buildx inspect --bootstrap
-      - docker buildx ls
-      - docker buildx use default
+      # - docker buildx ls
+      # - docker buildx use default
+      - docker buildx create --use --name mybuilder
       - docker buildx build --platform linux/amd64,linux/arm64 -t yanhao98/drone-test-image --push .
       - docker logout
 volumes:
