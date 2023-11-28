@@ -112,7 +112,7 @@ steps:
         from_secret: docker_password
     commands:
       - trap 'docker logout' EXIT
-      # - echo $DOCKER_PASSWORD | docker login -u yanhao98 --password-stdin
+      - echo $DOCKER_PASSWORD | docker login -u yanhao98 --password-stdin
       # ！！！！！！
       #     WARNING! Your password will be stored unencrypted in /root/.docker/config.json.
       #     Configure a credential helper to remove this warning. See
