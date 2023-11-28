@@ -78,7 +78,7 @@ steps:
       password:
         from_secret: email_password
       recipients_only: true
-      recipients: xx2@19980901.xyz
+      recipients: drone-build-notify@19980901.xyz
       attachments:
         - /drone/src/someFile.txt
         - /drone/src/someFile.html
@@ -112,15 +112,14 @@ steps:
         from_secret: docker_password
     commands:
       - echo $DOCKER_PASSWORD | docker login -u yanhao98 --password-stdin
+      # ！！！！！！
       #     WARNING! Your password will be stored unencrypted in /root/.docker/config.json.
       #     Configure a credential helper to remove this warning. See
       #     https://docs.docker.com/engine/reference/commandline/login/#credentials-store
-      # - docker buildx inspect --bootstrap
-      # - docker buildx ls
-      # - docker buildx use default
-      - docker buildx create --use --name mybuilder
-      - docker buildx build --platform linux/amd64,linux/arm64 -t yanhao98/drone-test-image --push .
-      - docker logout
+
+      - docker buildx create --name drone --bootstrap
+      - docker buildx build . --platform linux/amd64,linux/arm64 -t yanhao98/drone-test-image:latest --push --builder drone || (docker logout && false)
+      - echo "End of build"
 volumes:
   - name: dockersock
     host:
