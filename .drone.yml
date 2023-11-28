@@ -118,7 +118,7 @@ steps:
       #     https://docs.docker.com/engine/reference/commandline/login/#credentials-store
 
       - docker buildx create --name drone --bootstrap
-      - docker buildx build . --platform linux/amd64,linux/arm64 -t yanhao98/drone-test-image:latest --push --builder drone || (docker logout && false)
+      - docker buildx build . --platform linux/amd64,linux/arm64 -t yanhao98/drone-test-image:latest --push --builder drone ; docker logout
       - echo "End of build"
 volumes:
   - name: dockersock
