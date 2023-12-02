@@ -1,0 +1,26 @@
+name: Sync to GitHub
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          persist-credentials: false # otherwise, the token used is the GITHUB_TOKEN, instead of your personal access token.
+          fetch-depth: 0 # otherwise, there would be errors pushing refs to the destination repository.
+
+      - name: Push to GitHub
+        uses: ad-m/github-push-action@master
+        # https://github.com/ad-m/github-push-action
+        # https://github.com/marketplace/actions/github-push
+        with:
+          github_token: ${{ secrets.GH_TOKEN_YANHAOGITHUB2023 }}
+          repository: yanhaogithub2023/ci-demo
+          force: true
+          branch: main

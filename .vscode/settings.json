@@ -4,7 +4,8 @@
       ".drone*"
     ],
     "https://json.schemastore.org/github-workflow.json": [
-      ".gitea/workflows/*.yml"
+      ".gitea/workflows/*.yml",
+      ".gitea/workflows/*.yaml",
     ]
   },
   "files.associations": {
