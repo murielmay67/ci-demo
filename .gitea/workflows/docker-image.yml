@@ -39,5 +39,5 @@ jobs:
         uses: docker/build-push-action@v5
         with:
           push: true
-          tags: yanhao98/frps-http:latest
+          tags: murielmay67761/ci-demo-gitea:latest
           platforms: linux/amd64,linux/arm64
