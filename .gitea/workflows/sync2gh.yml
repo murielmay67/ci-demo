@@ -12,28 +12,10 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
         with:
-          persist-credentials: false # otherwise, the token used is the GITHUB_TOKEN, instead of your personal access token.
-          fetch-depth: 0 # otherwise, there would be errors pushing refs to the destination repository.
-
-      # - name: Push to GitHub
-      #   uses: ad-m/github-push-action@master
-      #   # https://github.com/ad-m/github-push-action
-      #   # https://github.com/marketplace/actions/github-push
-      #   with:
-      #     github_token: ${{ secrets.GH_TOKEN_YANHAOGITHUB2023 }}
-      #     repository: yanhaogithub2023/ci-demo
-      #     force: true
-      #     branch: main
-
-      # - name: Push to GitHub
-      #   uses: actions-js/push@master # https://github.com/marketplace/actions/github-commit-push
-      #   with:
-      #     force: true
-      #     repository: yanhaogithub2023/ci-demo
-      #     github_token: ${{ secrets.GH_TOKEN_YANHAOGITHUB2023 }}
+          persist-credentials: false
+          fetch-depth: 0
 
       - name: Push to GitHub
         run: |
-          git remote remove origin
-          git remote add origin https://${{ secrets.GH_TOKEN_YANHAOGITHUB2023 }}@github.com/yanhaogithub2023/ci-demo
+          git remote set-url origin https://${{ secrets.GH_TOKEN_YANHAOGITHUB2023 }}@github.com/yanhaogithub2023/ci-demo.git
           git push origin main
