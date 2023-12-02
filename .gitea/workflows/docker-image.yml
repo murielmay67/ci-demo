@@ -10,35 +10,34 @@ on:
 
 jobs:
   build-and-push:
-    # https://github.com/papodaca/install-docker-action
-    # https://gitea.com/gitea/act_runner/issues/63#issuecomment-733696
+    # https://docs.docker.com/build/ci/github-actions/multi-platform/
     runs-on: ubuntu-latest
-    container: catthehacker/ubuntu:act-latest
+    container: catthehacker/ubuntu:act-latest # https://gitea.com/gitea/act_runner/issues/63#issuecomment-745615
     steps:
       - run: curl ip.sb
       - run: docker --version
 
-      # - name: Check Out Repo
-      #   uses: actions/checkout@v4
+      - name: Check Out Repo
+        uses: actions/checkout@v4
 
       # - name: Install Docker
       #   run: curl -fsSL https://get.docker.com | sh
 
-      # - name: Set up QEMU
-      #   uses: docker/setup-qemu-action@v3
+      - name: Set up QEMU
+        uses: docker/setup-qemu-action@v3
 
-      # - name: Set up Docker Buildx
-      #   uses: docker/setup-buildx-action@v3
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v3
 
-      # - name: Login to DockerHub
-      #   uses: docker/login-action@v3
-      #   with:
-      #     username: ${{ secrets.DOCKERHUB_USERNAME }}
-      #     password: ${{ secrets.DOCKERHUB_TOKEN }}
+      - name: Login to DockerHub
+        uses: docker/login-action@v3
+        with:
+          username: ${{ secrets.DOCKERHUB_USERNAME }}
+          password: ${{ secrets.DOCKERHUB_TOKEN }}
 
-      # - name: Build and Push
-      #   uses: docker/build-push-action@v5
-      #   with:
-      #     push: true
-      #     tags: yanhao98/frps-http:latest
-      #     platforms: linux/amd64,linux/arm64
+      - name: Build and Push
+        uses: docker/build-push-action@v5
+        with:
+          push: true
+          tags: yanhao98/frps-http:latest
+          platforms: linux/amd64,linux/arm64
