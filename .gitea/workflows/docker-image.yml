@@ -10,7 +10,10 @@ on:
 
 jobs:
   build-and-push:
+    # https://github.com/papodaca/install-docker-action
+    # https://gitea.com/gitea/act_runner/issues/63#issuecomment-733696
     runs-on: ubuntu-latest
+    container: catthehacker/ubuntu:act-latest
     steps:
       - run: curl ip.sb
       - run: docker --version

@@ -1,7 +1,10 @@
 {
   "yaml.schemas": {
     "https://json.schemastore.org/drone.json": [
-      ".drone*",
+      ".drone*"
+    ],
+    "https://json.schemastore.org/github-workflow.json": [
+      ".gitea/workflows/*.yml"
     ]
   },
   "files.associations": {
