@@ -1,6 +1,3 @@
-# https://docs.docker.com/language/nodejs/configure-ci-cd/
-# https://docs.docker.com/build/ci/github-actions/multi-platform/
-
 name: Gitea Actions Demo
 run-name: ${{ gitea.actor }} is testing out Gitea Actions 🚀
 on: [push]
@@ -9,14 +6,12 @@ jobs:
   Explore-Gitea-Actions:
     runs-on: ubuntu-latest
     steps:
-      - run: curl ip.sb
-      - run: env
       - run: echo "🎉 The job was automatically triggered by a ${{ gitea.event_name }} event."
       - run: echo "🐧 This job is now running on a ${{ runner.os }} server hosted by Gitea!"
       - run: echo "🔎 The name of your branch is ${{ gitea.ref }} and your repository is ${{ gitea.repository }}."
       - name: Check out repository code
-        # uses: actions/checkout@v3
-        uses: https://gitea.com/actions/checkout@v3
+        uses: actions/checkout@v4
+        # uses: https://gitea.com/actions/checkout@v3
         # uses: https://gh-cf.oo1.dev/https://github.com/actions/checkout@v3
       - run: echo "💡 The ${{ gitea.repository }} repository has been cloned to the runner."
       - run: echo "🖥️ The workflow is now ready to test your code on the runner."
@@ -24,3 +19,9 @@ jobs:
         run: |
           ls ${{ gitea.workspace }}
       - run: echo "🍏 This job's status is ${{ job.status }}."
+
+  Another-Job:
+    runs-on: ubuntu-latest
+    steps:
+      - run: curl ip.sb
+      - run: env
