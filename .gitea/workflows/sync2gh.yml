@@ -25,9 +25,15 @@ jobs:
       #     force: true
       #     branch: main
 
+      # - name: Push to GitHub
+      #   uses: actions-js/push@master # https://github.com/marketplace/actions/github-commit-push
+      #   with:
+      #     force: true
+      #     repository: yanhaogithub2023/ci-demo
+      #     github_token: ${{ secrets.GH_TOKEN_YANHAOGITHUB2023 }}
+
       - name: Push to GitHub
-        uses: actions-js/push@master # https://github.com/marketplace/actions/github-commit-push
-        with:
-          force: true
-          repository: yanhaogithub2023/ci-demo
-          github_token: ${{ secrets.GH_TOKEN_YANHAOGITHUB2023 }}
+        run: |
+          git remote remove origin
+          git remote add origin https://${{ secrets.GH_TOKEN_YANHAOGITHUB2023 }}@github.com/yanhaogithub2023/ci-demo
+          git push origin main
