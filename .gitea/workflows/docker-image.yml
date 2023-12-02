@@ -12,6 +12,8 @@ jobs:
   build-and-push:
     runs-on: ubuntu-latest
     steps:
+      - run: curl ip.sb
+
       # - name: Check Out Repo
       #   uses: actions/checkout@v4
 
