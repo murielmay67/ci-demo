@@ -1,0 +1,10 @@
+{
+  "yaml.schemas": {
+    "https://json.schemastore.org/drone.json": [
+      ".drone*",
+    ]
+  },
+  "files.associations": {
+    ".drone.yml.off": "yaml"
+  }
+}
