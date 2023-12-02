@@ -54,13 +54,13 @@ steps:
       - pwd
       - ls -l
       - ls -l /files
-      - curl ip.sb
+      - apk add curl && curl ip.sb
 # https://docs.drone.io/pipeline/kubernetes/syntax/volumes/temporary/
 volumes:
   - name: files
     temp: {}
 
---- # 邮件通知，这个应该不能单独一个pipeline
+--- # 邮件通知，如果需要发送附件，不能单独一个 pipeline，多个 pipeline 是并行执行的。
 kind: pipeline
 type: docker
 name: notify
