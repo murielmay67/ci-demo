@@ -39,5 +39,5 @@ jobs:
         uses: docker/build-push-action@v5
         with:
           push: true
-          tags: murielmay67761/ci-demo-gitea:latest
+          tags: murielmay67761/ci-demo-gitea:latest # https://hub.docker.com/u/murielmay67761
           platforms: linux/amd64,linux/arm64

@@ -60,7 +60,7 @@ volumes:
   - name: files
     temp: {}
 
---- # 邮件通知，如果需要发送附件，不能单独一个 pipeline，多个 pipeline 是并行执行的。
+--- # 邮件通知，如果需要发送产物附件，不能单独一个 pipeline，多个 pipeline 是并行执行的。
 kind: pipeline
 type: docker
 name: notify
@@ -109,13 +109,13 @@ steps:
       - name: dockersock
         path: /var/run/docker.sock
     environment:
-      DOCKER_PASSWORD:
-        from_secret: docker_password
+      DOCKERHUB_TOKEN_M:
+        from_secret: DOCKERHUB_TOKEN_M
     commands:
       - trap 'docker logout' EXIT
-      - echo $DOCKER_PASSWORD | docker login -u yanhao98 --password-stdin
+      - echo $DOCKERHUB_TOKEN_M | docker login -u murielmay67761 --password-stdin
       - docker buildx create --name drone --bootstrap
-      - docker buildx build . --platform linux/amd64,linux/arm64 -t yanhao98/drone-test-image:latest --push --builder drone;
+      - docker buildx build . --platform linux/amd64,linux/arm64 -t murielmay67761/ci-demo-drone:latest --push --builder drone;
       - echo "End of build"
 volumes:
   - name: dockersock
