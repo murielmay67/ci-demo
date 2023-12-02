@@ -21,6 +21,6 @@ jobs:
         # https://github.com/marketplace/actions/github-push
         with:
           github_token: ${{ secrets.GH_TOKEN_YANHAOGITHUB2023 }}
-          repository: yanhaogithub2023/ci-demo
+          repository: https://github.com/yanhaogithub2023/ci-demo
           force: true
           branch: main
