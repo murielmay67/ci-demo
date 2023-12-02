@@ -26,6 +26,7 @@ jobs:
       #     branch: main
 
       - name: Push to GitHub
-        uses: actions-js/push@master
+        uses: actions-js/push@master # https://github.com/marketplace/actions/github-commit-push
         with:
+          force: true
           github_token: ${{ secrets.GH_TOKEN_YANHAOGITHUB2023 }}
