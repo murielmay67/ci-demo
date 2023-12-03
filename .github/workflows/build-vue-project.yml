@@ -21,8 +21,6 @@ jobs:
           version: 8
           run_install: false
 
-      - run: pnpm -v && node -v && npm -v && yarn -v
-
       - name: Set up Node.js
         uses: actions/setup-node@v4
         with:
@@ -30,12 +28,9 @@ jobs:
           cache: 'pnpm'
           cache-dependency-path: './vite-project/pnpm-lock.yaml'
 
-      # - name: Install pnpm
-      #   run: npm install -g pnpm
-
-      # - name: Install Dependencies
-      #   run: pnpm install
-      #   working-directory: ./vite-project
+      - name: Install Dependencies
+        run: pnpm install
+        working-directory: ./vite-project
 
       # - name: Build
       #   run: pnpm run build
