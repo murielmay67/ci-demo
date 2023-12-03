@@ -116,6 +116,7 @@ steps:
       - echo $DOCKERHUB_TOKEN_M | docker login -u murielmay67761 --password-stdin # https://hub.docker.com/u/murielmay67761
       - docker buildx create --name drone --bootstrap
       - docker buildx build . --platform linux/amd64,linux/arm64 -t murielmay67761/ci-demo-drone:latest --push --builder drone;
+      - docker buildx rm drone
       - echo "End of build"
 volumes:
   - name: dockersock
