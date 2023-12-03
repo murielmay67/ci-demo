@@ -112,11 +112,11 @@ steps:
       DOCKERHUB_TOKEN_M:
         from_secret: DOCKERHUB_TOKEN_M
     commands:
-      # - trap 'docker logout' EXIT
+      - trap 'docker logout' EXIT # 放在这里是为了在任何情况下都能执行，比如 docker build 失败
       - echo $DOCKERHUB_TOKEN_M | docker login -u murielmay67761 --password-stdin # https://hub.docker.com/u/murielmay67761
       - docker buildx create --name drone --bootstrap
       - docker buildx build . --platform linux/amd64,linux/arm64 -t murielmay67761/ci-demo-drone:latest --push --builder drone;
-      - docker logout
+      # - docker logout
       - docker buildx rm drone
       - echo "End of build"
 volumes:
