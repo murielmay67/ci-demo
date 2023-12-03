@@ -82,7 +82,7 @@ steps:
       recipients: drone-build-notify@19980901.xyz
       attachments:
         - /drone/src/someFile.txt
-        - /drone/src/someFile.html
+        # - /drone/src/someFile.html
     when:
       status:
         - failure
