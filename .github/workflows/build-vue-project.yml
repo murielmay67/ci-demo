@@ -21,12 +21,14 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
     # defaults:
     #   run:
     #     working-directory: ./vite-project
     steps:
-      - name: Checkout Repository
-        uses: actions/checkout@v4
+      - uses: actions/checkout@v4
       # - name: Install pnpm
       - uses: pnpm/action-setup@v2
         with:
@@ -50,14 +52,6 @@ jobs:
       #   with:
       #     name: dist
       #     path: vite-project/dist
-
-  deploy:
-    needs: build
-    runs-on: ubuntu-latest
-    environment:
-      name: github-pages
-      url: ${{ steps.deployment.outputs.page_url }}
-    steps:
       - name: Setup Pages
         # https://cn.vitejs.dev/guide/static-deploy#github-pages
         uses: actions/configure-pages@v3
@@ -69,3 +63,12 @@ jobs:
       - name: Deploy to GitHub Pages
         id: deployment
         uses: actions/deploy-pages@v2
+
+  test:
+    needs: build
+    runs-on: ubuntu-latest
+    steps:
+      - run: |
+          echo "test"
+          pwd
+          ls -al
