@@ -6,10 +6,10 @@ concurrency:
   cancel-in-progress: true
 
 # 设置 GITHUB_TOKEN 的权限，以允许部署到 GitHub Pages。
-permissions:
-  contents: read
-  pages: write
-  id-token: write
+# permissions:
+#   contents: read
+#   pages: write
+#   id-token: write
 
 on:
   push:
@@ -20,9 +20,9 @@ on:
 
 jobs:
   build:
-    environment:
-      name: github-pages
-      url: ${{ steps.deployment.outputs.page_url }}
+    # environment:
+    #   name: github-pages
+    #   url: ${{ steps.deployment.outputs.page_url }}
     runs-on: ubuntu-latest
     # defaults:
     #   run:
@@ -49,6 +49,7 @@ jobs:
         run: pnpm run build
         working-directory: ./vite-project
 
+      # 上传构建产物
       # https://github.com/murielmay67/ci-demo/actions/runs/7076674263
       # - name: Archive Production Artifacts
       #   uses: actions/upload-artifact@v3
@@ -67,3 +68,14 @@ jobs:
       - name: Deploy to GitHub Pages
         id: deployment
         uses: actions/deploy-pages@v2
+
+  # deploy:
+  #   needs: build
+  #   runs-on: ubuntu-latest
+  #   environment:
+  #     name: github-pages
+  #     url: ${{ steps.deployment.outputs.page_url }}
+  #   steps:
+  #     - name: Deploy to GitHub Pages
+  #       id: deployment
+  #       uses: actions/deploy-pages@v1
