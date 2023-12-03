@@ -39,8 +39,9 @@ jobs:
         run: pnpm run build
         working-directory: ./vite-project
 
-      - name: Archive Production Artifacts
-        uses: actions/upload-artifact@v3
-        with:
-          name: dist
-          path: vite-project/dist
+      # https://git.yanhao.ren/yanhao/ci-demo/actions/runs/115
+      # - name: Archive Production Artifacts
+      #   uses: actions/upload-artifact@v3
+      #   with:
+      #     name: dist
+      #     path: vite-project/dist
