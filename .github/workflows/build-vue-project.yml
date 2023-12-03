@@ -15,14 +15,22 @@ jobs:
       - name: Checkout Repository
         uses: actions/checkout@v4
 
+      - uses: pnpm/action-setup@v2
+        name: Install pnpm
+        with:
+          version: 8
+          run_install: false
+
+      - run: pnpm -v
+      - run: node -v
+      - run: npm -v
+      - run: yarn -v
+
       - name: Set up Node.js
         uses: actions/setup-node@v4
         with:
           node-version: '18'
           cache: 'pnpm'
-
-      - name: Install Dependencies
-        run: pnpm --version
 
       # - name: Install pnpm
       #   run: npm install -g pnpm
