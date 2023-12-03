@@ -20,22 +20,17 @@ on:
 
 jobs:
   build:
-    # environment:
-    #   name: github-pages
-    #   url: ${{ steps.deployment.outputs.page_url }}
     runs-on: ubuntu-latest
     # defaults:
     #   run:
     #     working-directory: ./vite-project
-
     steps:
       - name: Checkout Repository
         uses: actions/checkout@v4
+      # - name: Install pnpm
       - uses: pnpm/action-setup@v2
-        name: Install pnpm
         with:
           version: 8
-          run_install: false
       - name: Set up Node.js
         uses: actions/setup-node@v4
         with:
@@ -48,8 +43,7 @@ jobs:
       - name: Build
         run: pnpm run build
         working-directory: ./vite-project
-
-      # 上传构建产物
+      # 上传构建产物。 Gitea 也是支持的。
       # https://github.com/murielmay67/ci-demo/actions/runs/7076674263
       # - name: Archive Production Artifacts
       #   uses: actions/upload-artifact@v3
@@ -57,6 +51,13 @@ jobs:
       #     name: dist
       #     path: vite-project/dist
 
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
       - name: Setup Pages
         # https://cn.vitejs.dev/guide/static-deploy#github-pages
         uses: actions/configure-pages@v3
@@ -68,14 +69,3 @@ jobs:
       - name: Deploy to GitHub Pages
         id: deployment
         uses: actions/deploy-pages@v2
-
-  # deploy:
-  #   needs: build
-  #   runs-on: ubuntu-latest
-  #   environment:
-  #     name: github-pages
-  #     url: ${{ steps.deployment.outputs.page_url }}
-  #   steps:
-  #     - name: Deploy to GitHub Pages
-  #       id: deployment
-  #       uses: actions/deploy-pages@v1
