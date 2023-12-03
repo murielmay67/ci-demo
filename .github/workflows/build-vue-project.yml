@@ -29,7 +29,7 @@ jobs:
         with:
           node-version: '18'
           cache: 'pnpm'
-          # cache-dependency-path: './vite-project/pnpm-lock.yaml'
+          cache-dependency-path: './vite-project/pnpm-lock.yaml'
 
       - name: Install Dependencies
         run: pnpm install
