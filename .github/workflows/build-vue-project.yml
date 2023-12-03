@@ -1,9 +1,15 @@
-name: Build Vue Project
+name: Build Vue Project and Deploy to GitHub Pages
 
 # 允许一个并发的部署
 concurrency:
   group: 'pages'
   cancel-in-progress: true
+
+# 设置 GITHUB_TOKEN 的权限，以允许部署到 GitHub Pages。
+permissions:
+  contents: read
+  pages: write
+  id-token: write
 
 on:
   push:
