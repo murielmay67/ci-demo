@@ -4,15 +4,11 @@ on:
   push:
     branches:
       - main
-    # paths:
-    #   - 'Dockerfile'
-    #   - '.github/workflows/docker-image.yml'
 
 jobs:
   build-and-push:
     # https://docs.docker.com/build/ci/github-actions/multi-platform/
     runs-on: ubuntu-latest
-    container: catthehacker/ubuntu:act-latest # https://gitea.com/gitea/act_runner/issues/63#issuecomment-745615
     steps:
       - run: curl ip.sb
       - run: docker --version
@@ -39,5 +35,5 @@ jobs:
         uses: docker/build-push-action@v5
         with:
           push: true
-          tags: murielmay67761/ci-demo-gitea:latest # https://hub.docker.com/u/murielmay67761
+          tags: murielmay67761/ci-demo-github:latest # https://hub.docker.com/u/murielmay67761
           platforms: linux/amd64,linux/arm64
