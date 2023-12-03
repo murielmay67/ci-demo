@@ -10,6 +10,9 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: ./vite-project
 
     steps:
       - name: Checkout Repository
@@ -26,15 +29,15 @@ jobs:
         with:
           node-version: '18'
           cache: 'pnpm'
-          cache-dependency-path: './vite-project/pnpm-lock.yaml'
+          # cache-dependency-path: './vite-project/pnpm-lock.yaml'
 
       - name: Install Dependencies
         run: pnpm install
-        working-directory: ./vite-project
+        # working-directory: ./vite-project
 
       - name: Build
         run: pnpm run build
-        working-directory: ./vite-project
+        # working-directory: ./vite-project
 
       # - name: Archive Production Artifacts
       #   uses: actions/upload-artifact@v2
