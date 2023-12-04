@@ -86,7 +86,7 @@ steps:
     when:
       status:
         - failure
-        - success
+        # - success
 depends_on:
   - default-1
 
