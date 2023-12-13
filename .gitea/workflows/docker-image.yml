@@ -9,7 +9,7 @@ on:
     #   - '.github/workflows/docker-image.yml'
 
 jobs:
-  build-and-push:
+  build-and-push-docker-image:
     # https://docs.docker.com/build/ci/github-actions/multi-platform/
     runs-on: ubuntu-latest
     container: catthehacker/ubuntu:act-latest # https://gitea.com/gitea/act_runner/issues/63#issuecomment-745615
