@@ -12,7 +12,11 @@ jobs:
   build-and-push-docker-image:
     # https://docs.docker.com/build/ci/github-actions/multi-platform/
     runs-on: ubuntu-latest
-    container: catthehacker/ubuntu:act-latest # https://gitea.com/gitea/act_runner/issues/63#issuecomment-745615
+    container: catthehacker/ubuntu:act-latest
+    # https://docs.gitea.com/usage/actions/act-runner#labels
+    # https://gitea.com/gitea/act_runner/issues/63#issuecomment-745615
+    # https://github.com/nektos/act/blob/master/IMAGES.md
+
     steps:
       - run: curl ip.sb
       - run: docker --version
