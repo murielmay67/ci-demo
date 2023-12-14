@@ -11,8 +11,8 @@ jobs:
   Build-Vue-Project:
     runs-on: ubuntu-latest
     # https://about.gitea.com/resources/tutorials/enable-gitea-actions-cache-to-accelerate-cicd
-    # env:
-    #   RUNNER_TOOL_CACHE: /toolcache # specify with your cache path
+    env:
+      RUNNER_TOOL_CACHE: /toolcache # specify with your cache path
     # defaults:
     #   run:
     #     working-directory: ./vite-project
