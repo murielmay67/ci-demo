@@ -21,8 +21,6 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
-    env:
-      VITE_BUILD_SHA: ${{ github.sha }}
     environment:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}
@@ -41,6 +39,8 @@ jobs:
           cache: "pnpm"
           cache-dependency-path: "./vite-project/pnpm-lock.yaml"
       - name: Install dependencies and build
+        env:
+          VITE_BUILD_SHA: ${{ github.sha }}
         run: |
           pnpm install --frozen-lockfile
           pnpm run build

@@ -11,7 +11,6 @@ jobs:
   Build-Vue-Project:
     env:
       RUNNER_TOOL_CACHE: /toolcache
-      # VITE_BUILD_SHA: ${{ github.sha }}
     runs-on: ubuntu-latest
     # defaults:
     #   run:
@@ -29,6 +28,8 @@ jobs:
           cache: "pnpm"
           cache-dependency-path: "./vite-project/pnpm-lock.yaml"
       - name: Install dependencies and build
+        env:
+          VITE_BUILD_SHA: ${{ github.sha }}
         run: |
           pnpm install --frozen-lockfile
           pnpm run build
