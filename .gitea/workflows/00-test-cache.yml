@@ -1,0 +1,8 @@
+name: Test Cache
+on: [push]
+
+jobs:
+  Cache-Java-Test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/setup-java@v4
