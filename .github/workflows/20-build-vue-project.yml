@@ -40,10 +40,11 @@ jobs:
           node-version: "18"
           cache: "pnpm"
           cache-dependency-path: "./vite-project/pnpm-lock.yaml"
-      - run: |
+      - name: Install dependencies and build
+        run: |
           pnpm install --frozen-lockfile
           pnpm run build
-          cat vite-project/dist/index.html
+          cat ./dist/index.html
         working-directory: ./vite-project
       # 上传构建产物。 Gitea 也是支持的。
       # https://github.com/murielmay67/ci-demo/actions/runs/7076674263

@@ -19,23 +19,20 @@ jobs:
 
     steps:
       - uses: actions/checkout@v4
-
       - uses: pnpm/action-setup@v2
-        name: Install pnpm
         with:
           version: 8
           run_install: false
-
-      - name: Set up Node.js
-        uses: actions/setup-node@v4
+      - uses: actions/setup-node@v4
         with:
           node-version: "18"
           cache: "pnpm"
           cache-dependency-path: "./vite-project/pnpm-lock.yaml"
-      - run: |
+      - name: Install dependencies and build
+        run: |
           pnpm install --frozen-lockfile
           pnpm run build
-          cat vite-project/dist/index.html
+          cat ./dist/index.html
         working-directory: ./vite-project
       # https://git.yanhao.ren/yanhao/ci-demo/actions/runs/115
       # 左边，制品。
