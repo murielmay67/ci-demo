@@ -11,6 +11,7 @@ jobs:
   Build-Vue-Project:
     env:
       RUNNER_TOOL_CACHE: /toolcache
+      # VITE_BUILD_SHA: ${{ github.sha }}
     runs-on: ubuntu-latest
     # defaults:
     #   run:
@@ -31,14 +32,11 @@ jobs:
           node-version: "18"
           cache: "pnpm"
           cache-dependency-path: "./vite-project/pnpm-lock.yaml"
-
-      - name: Install Dependencies
-        run: pnpm install --frozen-lockfile
+      - run: |
+          pnpm install --frozen-lockfile
+          pnpm run build
+          cat vite-project/dist/index.html
         working-directory: ./vite-project
-      - name: Build
-        run: pnpm run build
-        working-directory: ./vite-project
-
       # https://git.yanhao.ren/yanhao/ci-demo/actions/runs/115
       # 左边，制品。
       # - name: Archive Production Artifacts

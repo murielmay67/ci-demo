@@ -21,6 +21,8 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
+    env:
+      VITE_BUILD_SHA: ${{ github.sha }}
     environment:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}
@@ -33,17 +35,15 @@ jobs:
       - uses: pnpm/action-setup@v2
         with:
           version: 8
-      - name: Set up Node.js
-        uses: actions/setup-node@v4
+      - uses: actions/setup-node@v4
         with:
           node-version: "18"
           cache: "pnpm"
           cache-dependency-path: "./vite-project/pnpm-lock.yaml"
-      - name: Install Dependencies
-        run: pnpm install --frozen-lockfile
-        working-directory: ./vite-project
-      - name: Build
-        run: pnpm run build
+      - run: |
+          pnpm install --frozen-lockfile
+          pnpm run build
+          cat vite-project/dist/index.html
         working-directory: ./vite-project
       # 上传构建产物。 Gitea 也是支持的。
       # https://github.com/murielmay67/ci-demo/actions/runs/7076674263

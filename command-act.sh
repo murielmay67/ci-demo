@@ -7,6 +7,7 @@ act -s GITHUB_TOKEN=[insert token or leave blank and omit equals for secure inpu
 # ###########################################
 # 运行指定的 Job
 act --job Explore-GitHub-Actions --workflows .github/workflows/github-actions-demo.yml --dryrun
+act --job build --workflows .github/workflows/20-build-vue-project.yml --dryrun
 # ###########################################
 
 # Command structure:
