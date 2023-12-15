@@ -8,7 +8,6 @@ jobs:
         uses: dawidd6/action-send-mail@v3
         with:
           connection_url: ${{secrets.MAIL_CONNECTION}}
-          secure: false
           subject: Github Actions job result
           to: obiwan@oo1.dev,yoda@oo1.dev
           from: Luke Skywalker
