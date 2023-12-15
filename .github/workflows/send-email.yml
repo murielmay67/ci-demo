@@ -1,0 +1,16 @@
+name: Send Email
+on: [push]
+jobs:
+  send-mail:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Send mail
+        uses: dawidd6/action-send-mail@v3
+        with:
+          connection_url: ${{secrets.MAIL_CONNECTION}}
+          subject: Github Actions job result
+          to: obiwan@oo1.dev,yoda@oo1.dev
+          from: Luke Skywalker
+          # body: Build job of ${{github.repository}} completed successfully!
+          attachments: ./*.txt
+          priority: high
