@@ -10,17 +10,8 @@ jobs:
     # https://docs.docker.com/build/ci/github-actions/multi-platform/
     runs-on: ubuntu-latest
     steps:
-      - run: curl ip.sb
-      - run: docker --version
-
-      - name: Check Out Repo
-        uses: actions/checkout@v4
-
-      # - name: Install Docker
-      #   run: curl -fsSL https://get.docker.com | sh
-
-      # - name: Set up QEMU
-      #   uses: docker/setup-qemu-action@v3
+      - name: Set up QEMU
+        uses: docker/setup-qemu-action@v3
 
       - name: Set up Docker Buildx
         uses: docker/setup-buildx-action@v3
@@ -35,5 +26,5 @@ jobs:
         uses: docker/build-push-action@v5
         with:
           push: true
-          tags: murielmay67761/ci-demo-github:latest # https://hub.docker.com/u/murielmay67761
+          tags: ${{ secrets.DOCKERHUB_USERNAME }}/ci-demo-github:latest # https://hub.docker.com/u/murielmay67761
           platforms: linux/amd64,linux/arm64

@@ -18,17 +18,8 @@ jobs:
     # https://github.com/nektos/act/blob/master/IMAGES.md
 
     steps:
-      - run: curl ip.sb
-      - run: docker --version
-
-      - name: Check Out Repo
-        uses: actions/checkout@v4
-
-      # - name: Install Docker
-      #   run: curl -fsSL https://get.docker.com | sh
-
-      # - name: Set up QEMU
-      #   uses: docker/setup-qemu-action@v3
+      - name: Set up QEMU
+        uses: docker/setup-qemu-action@v3
 
       - name: Set up Docker Buildx
         uses: docker/setup-buildx-action@v3
