@@ -7,22 +7,16 @@
 # TARGETARCH     — Architecture from --platform, e.g. arm64
 # TARGETVARIANT  — 
 
-FROM alpine
-WORKDIR /app
-RUN apk add --no-cache curl
-# RUN apk --no-cache add \
-#     bash \
-#     ca-certificates \
-#     curl \
-#     gettext \
-#     git \
-#     linux-pam \
-#     openssh \
-#     s6 \
-#     sqlite \
-#     su-exec \
-#     gnupg \
-#     && rm -rf /var/cache/apk/*
-# ENTRYPOINT ["/entry.sh"]
+FROM debian:stable-slim
+ARG DEBIAN_FRONTEND=noninteractive
 
-CMD [ "/bin/sh" ]
+RUN set -eux && \
+    apt-get update && \
+    apt-get install --no-install-recommends --no-install-suggests -y \
+    curl && \
+    # ...
+    apt-get purge -y --auto-remove curl && \
+    rm -rf /var/lib/apt/lists/*
+
+# ENTRYPOINT [ "/bin/bash" ]
+
