@@ -18,4 +18,4 @@ jobs:
       - name: Push to GitHub # https://github.com/murielmay67/ci-demo
         run: |
           git remote set-url origin https://${{ secrets.GH_TOKEN_MURIELMAY67 }}@github.com/murielmay67/ci-demo.git
-          git push origin main
+          git push origin main --force
