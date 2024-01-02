@@ -2,6 +2,9 @@
 version: '3'
 services:
   debug:
+    container_name: debug
+    environment:
+      - FOO=bar
     build: 
       # context: .
       pull: true
