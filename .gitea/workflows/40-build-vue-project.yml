@@ -21,7 +21,7 @@ jobs:
       - uses: pnpm/action-setup@v2
         with:
           version: 8
-          run_install: false
+          # run_install: false
       - uses: actions/setup-node@v4
         with:
           node-version: "18"
@@ -35,8 +35,7 @@ jobs:
           pnpm run build
           cat ./dist/index.html
         working-directory: ./vite-project
-      # https://git.yanhao.ren/yanhao/ci-demo/actions/runs/115
-      # 左边，制品。
+      # https://git.yanhao.ren/yanhao/ci-demo/actions/runs/115 左边，制品。
       # - name: Archive Production Artifacts
       #   uses: actions/upload-artifact@v3
       #   with:

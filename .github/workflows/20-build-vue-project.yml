@@ -29,14 +29,14 @@ jobs:
     #     working-directory: ./vite-project
     steps:
       - uses: actions/checkout@v4
-      # - name: Install pnpm
       - uses: pnpm/action-setup@v2
         with:
           version: 8
+          # run_install: false
       - uses: actions/setup-node@v4
         with:
-          node-version: 18
-          cache: pnpm
+          node-version: "18"
+          cache: "pnpm"
           cache-dependency-path: "./vite-project/pnpm-lock.yaml"
       - name: Install dependencies and build
         env:
