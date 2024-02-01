@@ -1,7 +1,10 @@
 # https://github.com/murielmay67/ci-demo
 name: GitHub Actions Demo
 run-name: ${{ github.actor }} is testing out GitHub Actions 🚀
-on: [push]
+on:
+  push:
+  # 允许你从 Actions 选项卡手动运行此工作流程
+  workflow_dispatch:
 
 jobs:
   Explore-GitHub-Actions:
@@ -25,3 +28,4 @@ jobs:
     steps:
       - run: curl ip.sb
       - run: env
+      - run: node -v

@@ -4,7 +4,12 @@
 # https://gitea.com/gitea/act_runner/issues/70
 
 name: Test Cache
-on: [push]
+on:
+  push:
+    branches: ["main"]
+
+  # Allows you to run this workflow manually from the Actions tab
+  workflow_dispatch:
 
 jobs:
   Cache-Java-Test:
