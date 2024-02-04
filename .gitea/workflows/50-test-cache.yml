@@ -3,6 +3,9 @@
 # https://gitea.com/gitea/act_runner
 # https://gitea.com/gitea/act_runner/issues/70
 
+# [cache](https://gitea.com/gitea/act_runner/issues/70#issuecomment-734824)
+# [cache](https://seepine.com/git/gitea/actions/)
+
 name: Test Cache
 on:
   push:
@@ -13,6 +16,11 @@ on:
 
 jobs:
   Cache-Java-Test:
+    # container:
+    #   image: catthehacker/ubuntu:act-latest
+    #   # 方法二，手动指定持久化目录
+    #   volumes:
+    #     - ubuntu_hostedtoolcache:/opt/hostedtoolcache
     env:
       RUNNER_TOOL_CACHE: /toolcache
     runs-on: ubuntu-latest

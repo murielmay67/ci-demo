@@ -10,6 +10,8 @@ on:
 jobs:
   Test-Setup-Node:
     runs-on: ubuntu-latest
+    env:
+      RUNNER_TOOL_CACHE: /toolcache
     steps:
       - run: echo "node version $(node -v)"
 
