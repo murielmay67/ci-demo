@@ -11,7 +11,9 @@ jobs:
   Test-Setup-Node:
     runs-on: ubuntu-latest
     steps:
+      - run: echo "node version $(node -v)"
       - uses: actions/checkout@v4
+      - run: ls -al
       - uses: pnpm/action-setup@v2
         with:
           version: 8
@@ -21,3 +23,4 @@ jobs:
           node-version: 18
           cache: pnpm
           cache-dependency-path: "./pnpm-lock.yaml"
+      - run: echo "node version $(node -v)"
