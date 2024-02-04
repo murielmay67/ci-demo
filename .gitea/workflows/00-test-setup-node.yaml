@@ -9,7 +9,8 @@ on:
 
 jobs:
   Test-Setup-Node:
-    runs-on: ubuntu-latest
+    # runs-on: ubuntu-latest
+    runs-on: ubuntu-22.04
     env:
       RUNNER_TOOL_CACHE: /toolcache
     steps:
