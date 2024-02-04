@@ -30,7 +30,6 @@ jobs:
           version: 8
           run_install: true
 
-      # 0052 这次提交恢复缓存和上次对比。
       - uses: actions/setup-node@v4
         with:
           node-version: 18
