@@ -52,4 +52,4 @@ act -v
 
 
 # ##########################################################
-act -P ubuntu-latest=catthehacker/ubuntu:act-latest -s NPM_TOKEN=somevalue
+act --pull=false --container-architecture linux/amd64 -P ubuntu-latest=catthehacker/ubuntu:act-latest -s NPM_TOKEN=somevalue
