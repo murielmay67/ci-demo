@@ -10,6 +10,7 @@ on:
 
 jobs:
   build-and-push:
+    if: false
     # https://docs.docker.com/build/ci/github-actions/multi-platform/
     runs-on: ubuntu-latest
     steps:

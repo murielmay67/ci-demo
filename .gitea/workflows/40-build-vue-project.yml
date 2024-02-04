@@ -9,6 +9,7 @@ on:
 
 jobs:
   Build-Vue-Project:
+    if: false
     # env:
     #   RUNNER_TOOL_CACHE: /toolcache
     runs-on: ubuntu-latest
@@ -55,20 +56,14 @@ jobs:
       - uses: pnpm/action-setup@v2
         with:
           version: 8
-          # run_install: false
-      # - uses: actions/setup-node@v4
-      #   with:
-      #     node-version: "18"
-      #     cache: "pnpm"
-      #     cache-dependency-path: "./vite-project/pnpm-lock.yaml"
+          run_install: true
       - name: Install dependencies and build
         env:
           VITE_BUILD_SHA: ${{ github.sha }}
         run: |
-          pnpm -v
+          echo "node version: $(node -v)"
           pnpm env use 18 --global
-          node -v
-          pnpm install --frozen-lockfile
+          echo "node version: $(node -v)"
           pnpm run build
           cat ./dist/index.html
         working-directory: ./vite-project
