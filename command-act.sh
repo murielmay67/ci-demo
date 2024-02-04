@@ -49,3 +49,7 @@ act -n
 
 # Enable verbose-logging (can be used with any of the above commands)
 act -v
+
+
+# ##########################################################
+act -P ubuntu-18.04=nektos/act-environments-ubuntu:18.04 -P ubuntu-latest=ubuntu:latest -P ubuntu-16.04=node:16-buster-slim
