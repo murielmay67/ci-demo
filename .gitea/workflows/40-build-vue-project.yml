@@ -10,8 +10,6 @@ on:
 jobs:
   Build-Vue-Project:
     # if: false
-    # env:
-    #   RUNNER_TOOL_CACHE: /toolcache
     runs-on: ubuntu-latest
     # defaults:
     #   run:
@@ -42,15 +40,9 @@ jobs:
       #   with:
       #     name: dist
       #     path: vite-project/dist
-  
-  Build-Vue-Project-2:
-    # env:
-    #   RUNNER_TOOL_CACHE: /toolcache
-    runs-on: ubuntu-latest
-    # defaults:
-    #   run:
-    #     working-directory: ./vite-project
 
+  Build-Vue-Project-Without-Setup-Node:
+    runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
       - uses: pnpm/action-setup@v2
@@ -67,9 +59,3 @@ jobs:
           pnpm run build
           cat ./dist/index.html
         working-directory: ./vite-project
-      # https://git.yanhao.ren/yanhao/ci-demo/actions/runs/115 左边，制品。
-      # - name: Archive Production Artifacts
-      #   uses: actions/upload-artifact@v3
-      #   with:
-      #     name: dist
-      #     path: vite-project/dist

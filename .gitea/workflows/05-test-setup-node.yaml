@@ -29,3 +29,5 @@ jobs:
           cache-dependency-path: "./vite-project/pnpm-lock.yaml"
 
       - run: echo "node version $(node -v)"
+
+      - run: pnpm install
