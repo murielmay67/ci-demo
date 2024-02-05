@@ -31,12 +31,13 @@ jobs:
       - run: java -version
 
   pnpm-cache:
-    runs-on: ubuntu-latest
+    runs-on: ${{ matrix.os }}
     # defaults:
     #   run:
     #     working-directory: ./vite-project
     strategy:
       matrix:
+        os: [ubuntu-latest-arm, ubuntu-latest-amd]
         node-version: [16, 18]
     steps:
       - run: echo "node version $(node -v)"
