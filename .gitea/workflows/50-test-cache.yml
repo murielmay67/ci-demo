@@ -21,8 +21,8 @@ jobs:
     #   # 方法二，手动指定持久化目录
     #   volumes:
     #     - ubuntu_hostedtoolcache:/opt/hostedtoolcache
-    env:
-      RUNNER_TOOL_CACHE: /toolcache
+    # env:
+    #   RUNNER_TOOL_CACHE: /toolcache
     runs-on: ubuntu-latest
     # container:
     #   image: your_docker_image
