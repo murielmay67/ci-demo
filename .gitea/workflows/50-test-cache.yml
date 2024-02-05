@@ -39,6 +39,8 @@ jobs:
       matrix:
         node-version: [16, 18]
     steps:
+      - run: echo "node version $(node -v)"
+
       - uses: actions/checkout@v3
       - uses: pnpm/action-setup@v2
         with:
@@ -51,3 +53,5 @@ jobs:
           cache-dependency-path: ./vite-project/pnpm-lock.yaml
       - name: Install dependencies
         run: pnpm install --recursive
+
+      - run: echo "node version $(node -v)"
