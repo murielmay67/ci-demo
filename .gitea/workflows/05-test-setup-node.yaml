@@ -30,4 +30,4 @@ jobs:
 
       - run: echo "node version $(node -v)"
 
-      - run: pnpm install
+      - run: pnpm install --recursive
