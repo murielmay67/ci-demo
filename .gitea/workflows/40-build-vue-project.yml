@@ -9,7 +9,7 @@ on:
 
 jobs:
   Build-Vue-Project:
-    if: false
+    # if: false
     # env:
     #   RUNNER_TOOL_CACHE: /toolcache
     runs-on: ubuntu-latest
