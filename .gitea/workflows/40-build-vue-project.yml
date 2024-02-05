@@ -10,7 +10,7 @@ on:
 jobs:
   Build-Vue-Project:
     # if: false
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-latest-arm64
     # defaults:
     #   run:
     #     working-directory: ./vite-project
@@ -42,7 +42,7 @@ jobs:
       #     path: vite-project/dist
 
   Build-Vue-Project-Without-Setup-Node:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-latest-arm64
     steps:
       - uses: actions/checkout@v4
       - uses: pnpm/action-setup@v2

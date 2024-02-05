@@ -10,7 +10,7 @@ on:
 
 jobs:
   Explore-Gitea-Actions:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-latest-arm64
     steps:
       - run: |
           echo "🕒 date: $(date)"
@@ -27,7 +27,7 @@ jobs:
       - run: echo "🍏 This job's status is ${{ job.status }}."
 
   Another-Job:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-latest-arm64
     steps:
       - run: |
           echo "🕒 date: $(date)"

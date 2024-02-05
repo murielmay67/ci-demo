@@ -16,13 +16,7 @@ on:
 
 jobs:
   Cache-Java-Test:
-    runs-on: ubuntu-latest
-    # env:
-    #   RUNNER_TOOL_CACHE: /toolcache
-    # container:
-    #   image: catthehacker/ubuntu:act-latest
-    #   volumes:
-    #     - your_docker_volumn:/opt/hostedtoolcache
+    runs-on: ubuntu-latest-arm64
     steps:
       - uses: actions/setup-java@v4
         with:
@@ -38,7 +32,7 @@ jobs:
     strategy:
       matrix:
         os: [ubuntu-latest-arm64, ubuntu-latest-amd64]
-        node-version: [16, 18]
+        node-version: [16, 18, 20]
     steps:
       - run: echo "node version $(node -v)"
 

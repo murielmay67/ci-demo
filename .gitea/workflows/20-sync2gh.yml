@@ -9,7 +9,7 @@ on:
 
 jobs:
   sync-to-github:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-latest-arm64
     steps:
       - name: Checkout
         uses: actions/checkout@v4
