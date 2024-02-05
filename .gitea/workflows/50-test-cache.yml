@@ -25,14 +25,14 @@ jobs:
       - run: java -version
 
   pnpm-cache:
-    runs-on: ${{ matrix.os }}
+    runs-on: ubuntu-latest-arm64
     # defaults:
     #   run:
     #     working-directory: ./vite-project
-    strategy:
-      matrix:
-        os: [ubuntu-latest-arm64, ubuntu-latest-amd64]
-        node-version: [16, 18, 20]
+    # strategy:
+    #   matrix:
+    #     os: [ubuntu-latest-arm64, ubuntu-latest-amd64]
+    #     node-version: [16, 18, 20]
     steps:
       - run: echo "node version $(node -v)"
 
@@ -40,14 +40,13 @@ jobs:
       - uses: pnpm/action-setup@v2
         with:
           version: 8
-      - name: Use Node.js ${{ matrix.node-version }}
+      - name: Use Node.js 20
         uses: actions/setup-node@v4
         with:
-          node-version: ${{ matrix.node-version }}
+          node-version: 20
           cache: pnpm
           cache-dependency-path: ./vite-project/pnpm-lock.yaml
       - name: Install dependencies
         run: pnpm install --recursive
 
       - run: echo "node version $(node -v)"
-

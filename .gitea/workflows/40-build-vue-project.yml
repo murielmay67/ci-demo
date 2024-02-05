@@ -10,7 +10,11 @@ on:
 jobs:
   Build-Vue-Project:
     # if: false
-    runs-on: ubuntu-latest-arm64
+    runs-on: ${{ matrix.os }}
+    strategy:
+      matrix:
+        os: [ubuntu-latest-arm64, ubuntu-latest-amd64]
+        node-version: [18, 20]
     # defaults:
     #   run:
     #     working-directory: ./vite-project
@@ -42,7 +46,11 @@ jobs:
       #     path: vite-project/dist
 
   Build-Vue-Project-Without-Setup-Node:
-    runs-on: ubuntu-latest-arm64
+    runs-on: ${{ matrix.os }}
+    strategy:
+      matrix:
+        os: [ubuntu-latest-arm64, ubuntu-latest-amd64]
+        node-version: [18, 20]
     steps:
       - uses: actions/checkout@v4
       - uses: pnpm/action-setup@v2
