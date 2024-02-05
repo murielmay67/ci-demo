@@ -37,7 +37,7 @@ jobs:
     #     working-directory: ./vite-project
     strategy:
       matrix:
-        os: [ubuntu-latest-arm, ubuntu-latest-amd]
+        os: [ubuntu-latest-arm64, ubuntu-latest-amd64]
         node-version: [16, 18]
     steps:
       - run: echo "node version $(node -v)"
