@@ -12,7 +12,7 @@ defaults:
     working-directory: ./vite-vue-ts
 
 jobs:
-  Build-Vue-Project:
+  Build-Vue:
     # if: false
     runs-on: ${{ matrix.os }}
     strategy:
@@ -45,7 +45,7 @@ jobs:
       #     name: dist
       #     path: vite-vue-ts/dist
 
-  Build-Vue-Project-Without-Setup-Node:
+  Without-Setup-Node:
     runs-on: ${{ matrix.os }}
     strategy:
       matrix:
