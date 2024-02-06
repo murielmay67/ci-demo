@@ -44,4 +44,5 @@ jobs:
             README.md
           sparse-checkout-cone-mode: false
       - run: ls -al
-      # - run: ls -al vite-vue-ts
+      - run: ls -al vite-vue-ts
+      - run: ls -al vite-react-ts
