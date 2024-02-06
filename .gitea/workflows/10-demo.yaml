@@ -40,6 +40,7 @@ jobs:
     steps:
       - uses: actions/checkout@v4
         with:
-          sparse-checkout: "vite-vue-ts"
+          sparse-checkout: |
+            vite-vue-ts
       - run: ls -al
       - run: ls -al vite-vue-ts
