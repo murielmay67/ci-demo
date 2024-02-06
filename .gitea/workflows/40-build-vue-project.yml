@@ -7,6 +7,10 @@ on:
   # Allows you to run this workflow manually from the Actions tab
   workflow_dispatch:
 
+defaults:
+  run:
+    working-directory: ./vite-vue-ts
+
 jobs:
   Build-Vue-Project:
     # if: false
@@ -15,16 +19,13 @@ jobs:
       matrix:
         os: [ubuntu-latest-arm64, ubuntu-latest-amd64]
         node-version: [18, 20]
-    # defaults:
-    #   run:
-    #     working-directory: ./vite-vue-ts
 
     steps:
       - uses: actions/checkout@v4
       - uses: pnpm/action-setup@v2
         with:
           version: 8
-          # run_install: false
+          # run_install: true
       - uses: actions/setup-node@v4
         with:
           node-version: "18"
@@ -37,7 +38,6 @@ jobs:
           pnpm install --frozen-lockfile
           pnpm run build
           cat ./dist/index.html
-        working-directory: ./vite-vue-ts
       # https://git.yanhao.ren/yanhao/ci-demo/actions/runs/115 左边，制品。
       # - name: Archive Production Artifacts
       #   uses: actions/upload-artifact@v3
@@ -56,7 +56,7 @@ jobs:
       - uses: pnpm/action-setup@v2
         with:
           version: 8
-          run_install: true
+          # run_install: true
       - name: Install dependencies and build
         env:
           VITE_BUILD_SHA: ${{ github.sha }}
@@ -64,6 +64,6 @@ jobs:
           echo "node version: $(node -v)"
           pnpm env use 18 --global
           echo "node version: $(node -v)"
+          pnpm install --frozen-lockfile
           pnpm run build
           cat ./dist/index.html
-        working-directory: ./vite-vue-ts
