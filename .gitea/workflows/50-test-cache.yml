@@ -28,7 +28,7 @@ jobs:
     runs-on: ubuntu-latest-arm64
     # defaults:
     #   run:
-    #     working-directory: ./vite-project
+    #     working-directory: ./vite-vue-ts
     # strategy:
     #   matrix:
     #     os: [ubuntu-latest-arm64, ubuntu-latest-amd64]
@@ -45,7 +45,7 @@ jobs:
         with:
           node-version: 20
           cache: pnpm
-          cache-dependency-path: ./vite-project/pnpm-lock.yaml
+          cache-dependency-path: ./vite-vue-ts/pnpm-lock.yaml
       - name: Install dependencies
         run: pnpm install --recursive
 

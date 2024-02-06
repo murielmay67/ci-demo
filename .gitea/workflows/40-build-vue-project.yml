@@ -17,7 +17,7 @@ jobs:
         node-version: [18, 20]
     # defaults:
     #   run:
-    #     working-directory: ./vite-project
+    #     working-directory: ./vite-vue-ts
 
     steps:
       - uses: actions/checkout@v4
@@ -29,7 +29,7 @@ jobs:
         with:
           node-version: "18"
           cache: "pnpm"
-          cache-dependency-path: "./vite-project/pnpm-lock.yaml"
+          cache-dependency-path: "./vite-vue-ts/pnpm-lock.yaml"
       - name: Install dependencies and build
         env:
           VITE_BUILD_SHA: ${{ github.sha }}
@@ -37,13 +37,13 @@ jobs:
           pnpm install --frozen-lockfile
           pnpm run build
           cat ./dist/index.html
-        working-directory: ./vite-project
+        working-directory: ./vite-vue-ts
       # https://git.yanhao.ren/yanhao/ci-demo/actions/runs/115 左边，制品。
       # - name: Archive Production Artifacts
       #   uses: actions/upload-artifact@v3
       #   with:
       #     name: dist
-      #     path: vite-project/dist
+      #     path: vite-vue-ts/dist
 
   Build-Vue-Project-Without-Setup-Node:
     runs-on: ${{ matrix.os }}
@@ -66,4 +66,4 @@ jobs:
           echo "node version: $(node -v)"
           pnpm run build
           cat ./dist/index.html
-        working-directory: ./vite-project
+        working-directory: ./vite-vue-ts
