@@ -41,7 +41,6 @@ jobs:
       - uses: actions/checkout@v4
         with:
           path: "vite-vue-ts"
-      - run: |
-          ls -al
-          cd vite-vue-ts
-          ls -al
+      - run: ls -al
+      - run: cd vite-vue-ts
+      - run: ls -al
