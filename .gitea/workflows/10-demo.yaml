@@ -34,3 +34,11 @@ jobs:
       - run: curl ip.sb
       - run: env
       - run: node -v
+
+  Test-Checkout:
+    runs-on: ubuntu-latest-arm64
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          path: "vite-vue-ts"
+      - run: ls -al
