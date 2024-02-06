@@ -45,14 +45,3 @@ jobs:
           sparse-checkout-cone-mode: false
       - run: ls -al
       - run: ls -al vite-vue-ts
-
-  Test-Checkout-2:
-    runs-on: ubuntu-latest-arm64
-    steps:
-      - uses: actions/checkout@v4
-        with:
-          sparse-checkout: |
-            vite-vue-ts/
-          sparse-checkout-cone-mode: true
-      - run: ls -al
-      - run: ls -al vite-vue-ts
