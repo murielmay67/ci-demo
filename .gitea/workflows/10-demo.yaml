@@ -53,6 +53,6 @@ jobs:
         with:
           sparse-checkout: |
             /vite-vue-ts/
-          sparse-checkout-cone-mode: false
+          sparse-checkout-cone-mode: true
       - run: ls -al
       - run: ls -al vite-vue-ts
