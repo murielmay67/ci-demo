@@ -36,6 +36,7 @@ jobs:
       - run: node -v
       - run: echo ${{ runner.os }}
       - run: echo $0
+      - run: time $(i=0; while (( i < 999992 )); do (( i ++ )); done) && exit;
 
   Test-Checkout-1:
     runs-on: ubuntu-arm64
