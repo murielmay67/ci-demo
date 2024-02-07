@@ -37,6 +37,8 @@ jobs:
       - run: echo ${{ runner.os }}
       - run: echo $0
       - run: time $(i=0; while (( i < 999992 )); do (( i ++ )); done) && exit;
+      - run: echo ${{ vars.SOME_VAR }}
+      - run: echo $SOME_VAR
 
   Test-Checkout-1:
     runs-on: ubuntu-arm64
