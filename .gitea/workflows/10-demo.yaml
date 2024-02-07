@@ -35,6 +35,7 @@ jobs:
       - run: env
       - run: node -v
       - run: echo ${{ runner.os }}
+      - run: echo $0
 
   Test-Checkout-1:
     runs-on: ubuntu-arm64
