@@ -26,18 +26,33 @@ jobs:
       url: ${{ steps.deployment.outputs.page_url }}
     # defaults:
     #   run:
-    #     working-directory: ./vite-project
+    #     working-directory: ./vite-vue-ts
     steps:
       - uses: actions/checkout@v4
+      
       - uses: pnpm/action-setup@v2
         with:
           version: 8
           # run_install: false
+
       - uses: actions/setup-node@v4
         with:
           node-version: "18"
           cache: "pnpm"
-          cache-dependency-path: "./vite-project/pnpm-lock.yaml"
+          cache-dependency-path: "./vite-vue-ts/pnpm-lock.yaml"
+
+      - name: 获取 package.json 的 name 字段
+        run: |
+            # 使用 Node.js 执行一段简单的 JavaScript 来读取 package.json
+            NAME=$(node -pe "require('./vite-vue-ts/package.json').name")
+            echo "Package name: $NAME"
+            # 使用 GitHub Actions 的环境变量功能来使名称在后续步骤中可用
+            echo "PACKAGE_NAME=$NAME" >> $GITHUB_ENV
+
+      - name: 使用 package 名称
+        run: |
+          echo "使用的 package 名称是 $PACKAGE_NAME"
+
       - name: Install dependencies and build
         env:
           VITE_BUILD_SHA: ${{ github.sha }}
@@ -45,14 +60,20 @@ jobs:
           pnpm install --frozen-lockfile
           pnpm run build
           cat ./dist/index.html
-        working-directory: ./vite-project
+        working-directory: ./vite-vue-ts
+
+      - name: Zip dist
+        run: |
+          time(zip -r dist.zip ./vite-vue-ts/dist)
+          ls -lh
+
       # 上传构建产物。 Gitea 也是支持的。
       # https://github.com/murielmay67/ci-demo/actions/runs/7076674263
       # - name: Archive Production Artifacts
       #   uses: actions/upload-artifact@v3
       #   with:
       #     name: dist
-      #     path: vite-project/dist
+      #     path: vite-vue-ts/dist
       - name: Setup Pages
         # https://cn.vitejs.dev/guide/static-deploy#github-pages
         uses: actions/configure-pages@v4
@@ -60,7 +81,7 @@ jobs:
         uses: actions/upload-pages-artifact@v3
         with:
           # Upload dist repository
-          path: "./vite-project/dist"
+          path: "./vite-vue-ts/dist"
       - name: Deploy to GitHub Pages
         id: deployment
         uses: actions/deploy-pages@v4
