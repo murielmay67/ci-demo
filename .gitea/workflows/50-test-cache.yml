@@ -19,7 +19,7 @@ jobs:
     runs-on: ${{ matrix.os }}
     strategy:
       matrix:
-        os: [ubuntu-latest-arm64, ubuntu-latest-amd64]
+        os: [ubuntu-arm64, ubuntu-amd64]
     steps:
       - uses: actions/setup-java@v4
         with:
@@ -28,7 +28,7 @@ jobs:
       - run: java -version
 
   pnpm-cache:
-    runs-on: ubuntu-latest-arm64
+    runs-on: ubuntu-arm64
     steps:
       - run: echo "node version $(node -v)"
 

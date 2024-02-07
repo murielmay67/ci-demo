@@ -10,7 +10,7 @@ on:
 
 jobs:
   # Explore-Gitea-Actions:
-  #   runs-on: ubuntu-latest-arm64
+  #   runs-on: ubuntu-arm64
   #   steps:
   #     - run: |
   #         echo "🕒 date: $(date)"
@@ -26,17 +26,18 @@ jobs:
   #       run: ls ${{ github.workspace }}
   #     - run: echo "🍏 This job's status is ${{ job.status }}."
 
-  # Another-Job:
-  #   runs-on: ubuntu-latest-arm64
-  #   steps:
-  #     - run: |
-  #         echo "🕒 date: $(date)"
-  #     - run: curl ip.sb
-  #     - run: env
-  #     - run: node -v
+  Another-Job:
+    runs-on: ubuntu-arm64
+    steps:
+      - run: |
+          echo "🕒 date: $(date)"
+      - run: curl ip.sb
+      - run: env
+      - run: node -v
+      - run: echo ${{ runner.os }}
 
   Test-Checkout-1:
-    runs-on: ubuntu-latest-arm64
+    runs-on: ubuntu-arm64
     steps:
       - uses: actions/checkout@v4
         with:

@@ -12,12 +12,12 @@ defaults:
     working-directory: ./vite-vue-ts
 
 jobs:
-  B-1:
-    # if: false
+  with-node:
+    if: false
     runs-on: ${{ matrix.os }}
     strategy:
       matrix:
-        os: [ubuntu-latest-arm64, ubuntu-latest-amd64]
+        os: [ubuntu-arm64, ubuntu-amd64]
         node-version: [18, 20]
 
     steps:
@@ -45,11 +45,12 @@ jobs:
       #     name: dist
       #     path: vite-vue-ts/dist
 
-  B-2:
+  only-pnpm:
+    if: false
     runs-on: ${{ matrix.os }}
     strategy:
       matrix:
-        os: [ubuntu-latest-arm64, ubuntu-latest-amd64]
+        os: [ubuntu-arm64, ubuntu-amd64]
         node-version: [18, 20]
     steps:
       - uses: actions/checkout@v4

@@ -15,7 +15,7 @@ jobs:
   build-and-push-docker-image:
     if: false
     # https://docs.docker.com/build/ci/github-actions/multi-platform/
-    runs-on: ubuntu-latest-arm64
+    runs-on: ubuntu-arm64
     container: catthehacker/ubuntu:act-latest
     # https://docs.gitea.com/usage/actions/act-runner#labels
     # https://gitea.com/gitea/act_runner/issues/63#issuecomment-745615
