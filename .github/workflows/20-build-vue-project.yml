@@ -64,8 +64,9 @@ jobs:
 
       - name: Zip dist
         run: |
-          time(zip -r dist.zip ./vite-vue-ts/dist)
-          ls -lh
+          time(zip -Xrq dist.zip ./vite-vue-ts/dist)
+          ls -alh
+          echo "zip file sha256: $(sha256sum dist.zip)"
 
       # 上传构建产物。 Gitea 也是支持的。
       # https://github.com/murielmay67/ci-demo/actions/runs/7076674263
