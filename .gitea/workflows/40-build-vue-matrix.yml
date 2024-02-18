@@ -47,7 +47,7 @@ jobs:
 
   only-pnpm:
     # if: false
-    name: Build Vue Project ${{ matrix.os }} ${{ matrix.node-version }}
+    # name: Build Vue Project ${{ matrix.os }} ${{ matrix.node-version }}
     runs-on: ${{ matrix.os }}
     strategy:
       matrix:
