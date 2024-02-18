@@ -27,20 +27,25 @@ jobs:
         with:
           version: 8
           # run_install: true
-      - uses: actions/setup-node@v4
+      - name: Use Node.js ${{ matrix.node-version }}
+        uses: actions/setup-node@v4
         with:
           node-version: ${{ matrix.node-version }}
           cache: "pnpm"
           cache-dependency-path: "./vite-vue-ts/pnpm-lock.yaml"
+      
       - name: Install dependencies
-        run: |
-          pnpm install --frozen-lockfile
+        run: pnpm install --frozen-lockfile
+      
       - name: Build
         env:
           VITE_BUILD_SHA: ${{ github.sha }}
         run: |
+          set -x
+          node -v
+          pnpm node -v
           pnpm run build
-          cat ./dist/index.html
+          cat ./dist/index.html | grep data-build-sha
 
       # https://git.yanhao.ren/yanhao/ci-demo/actions/runs/115 左边，制品。
       # - name: Archive Production Artifacts
