@@ -28,3 +28,4 @@ runs:
     - name: 📦 Install Project Dependencies
       run: pnpm install --frozen-lockfile
       shell: bash
+      working-directory: ./vite-vue-ts
