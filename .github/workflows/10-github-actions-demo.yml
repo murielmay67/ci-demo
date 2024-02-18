@@ -36,4 +36,4 @@ jobs:
       - uses: actions/checkout@main
 
       - name : 📦 Setup Node + PNPM + install deps
-        uses: ./.github/actions/setup-node-pnpm-install
+        uses: ./.github/actions/setup-node-pnpm-install # Gitea 不支持
