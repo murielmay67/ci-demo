@@ -30,9 +30,9 @@ jobs:
       - name: Use Node.js ${{ matrix.node-version }}
         run: |
           set -x
-          echo "node version: $(node -v)"
+          node -v
           pnpm env use ${{ matrix.node-version }} --global
-          echo "node version: $(node -v)"
+          node -v
       
       - name: Install dependencies
         run: pnpm install --frozen-lockfile
