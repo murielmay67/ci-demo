@@ -29,3 +29,5 @@ jobs:
       - run: curl ip.sb
       - run: env
       - run: node -v
+      - name : 📦 Setup Node + PNPM + install deps
+        uses: ./.github/actions/setup-node-pnpm-install
