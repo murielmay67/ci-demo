@@ -29,5 +29,11 @@ jobs:
       - run: curl ip.sb
       - run: env
       - run: node -v
+
+  Composite-Job:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@main
+
       - name : 📦 Setup Node + PNPM + install deps
         uses: ./.github/actions/setup-node-pnpm-install
