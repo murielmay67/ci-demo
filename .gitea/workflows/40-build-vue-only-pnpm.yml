@@ -30,12 +30,17 @@ jobs:
       - name: Use Node.js ${{ matrix.node-version }}
         run: |
           set -x
-          node -v
-          pnpm env use ${{ matrix.node-version }} --global
-          node -v
           pnpm node -v
           node -v
-      
+          pnpm env use ${{ matrix.node-version }} --global
+          pnpm node -v
+          node -v
+      - name: Check Node version
+        run: |
+          set -x
+          pnpm node -v
+          node -v
+
       - name: Install dependencies
         run: pnpm install --frozen-lockfile
       
@@ -44,7 +49,7 @@ jobs:
           VITE_BUILD_SHA: ${{ github.sha }}
         run: |
           set -x
-          node -v
           pnpm node -v
+          node -v
           pnpm run build
           cat ./dist/index.html | grep data-build-sha
