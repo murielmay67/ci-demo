@@ -18,8 +18,9 @@ jobs:
     strategy:
       matrix:
         os: [ubuntu-arm64, ubuntu-amd64]
-        node-version: [18, 20]
-
+        node-version:
+          # - 18
+          - 20
     steps:
       - uses: actions/checkout@v4
       - uses: pnpm/action-setup@v3
@@ -31,41 +32,19 @@ jobs:
           node-version: ${{ matrix.node-version }}
           cache: "pnpm"
           cache-dependency-path: "./vite-vue-ts/pnpm-lock.yaml"
-      - name: Install dependencies and build
+      - name: Install dependencies
+        run: |
+          pnpm install --frozen-lockfile
+      - name: Build
         env:
           VITE_BUILD_SHA: ${{ github.sha }}
         run: |
-          pnpm install --frozen-lockfile
           pnpm run build
           cat ./dist/index.html
+
       # https://git.yanhao.ren/yanhao/ci-demo/actions/runs/115 左边，制品。
       # - name: Archive Production Artifacts
       #   uses: actions/upload-artifact@v3
       #   with:
       #     name: dist
       #     path: vite-vue-ts/dist
-
-  only-pnpm:
-    # if: false
-    # name: Build Vue Project ${{ matrix.os }} ${{ matrix.node-version }}
-    runs-on: ${{ matrix.os }}
-    strategy:
-      matrix:
-        os: [ubuntu-arm64, ubuntu-amd64]
-        node-version: [18, 20]
-    steps:
-      - uses: actions/checkout@v4
-      - uses: pnpm/action-setup@v3
-        with:
-          version: 8
-          # run_install: true
-      - name: Install dependencies and build
-        env:
-          VITE_BUILD_SHA: ${{ github.sha }}
-        run: |
-          echo "node version: $(node -v)"
-          pnpm env use 18 --global
-          echo "node version: $(node -v)"
-          pnpm install --frozen-lockfile
-          pnpm run build
-          cat ./dist/index.html
