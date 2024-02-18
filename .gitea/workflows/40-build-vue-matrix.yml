@@ -13,7 +13,7 @@ defaults:
 
 jobs:
   with-node:
-    if: false
+    # if: false
     runs-on: ${{ matrix.os }}
     strategy:
       matrix:
@@ -46,7 +46,7 @@ jobs:
       #     path: vite-vue-ts/dist
 
   only-pnpm:
-    if: false
+    # if: false
     name: Build Vue Project ${{ matrix.os }} ${{ matrix.node-version }}
     runs-on: ${{ matrix.os }}
     strategy:
