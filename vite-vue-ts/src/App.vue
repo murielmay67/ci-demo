@@ -1,9 +1,20 @@
 <script setup lang="ts">
+import { onMounted } from "vue";
 import HelloWorld from "./components/HelloWorld.vue";
+import { useRefs } from "./hooks/use-refs";
+
+const { refs, toRef } = useRefs<{
+  input: InstanceType<typeof HTMLInputElement>;
+}>();
+
+onMounted(() => {
+  refs.input.focus();
+});
 </script>
 
 <template>
   <div>
+    <input :ref="toRef('input')" style="display: block;" />
     <a href="https://vitejs.dev" target="_blank">
       <img src="/vite.svg" class="logo" alt="Vite logo" />
     </a>
