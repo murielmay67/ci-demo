@@ -50,3 +50,12 @@ jobs:
           sparse-checkout-cone-mode: false
       - run: ls -al
       - run: ls -al vite-vue-ts
+      - run: free -m
+
+  Composite-Job:
+    runs-on: ubuntu-arm64
+    steps:
+      - uses: actions/checkout@main
+
+      - name: 📦 Setup Node + PNPM + install deps
+        uses: ./.github/actions/setup-node-pnpm-install
