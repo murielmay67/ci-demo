@@ -20,3 +20,4 @@ RUN set -eux && \
 
 # ENTRYPOINT [ "/bin/bash" ]
 
+# https://github.com/nginxinc/docker-nginx/blob/master/Dockerfile-debian.template
