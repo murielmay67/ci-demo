@@ -36,7 +36,7 @@ jobs:
 
       - name: Install Dependencies
         run: |
-          time pnpm install -r --frozen-lockfile --store-dir "$RUNNER_TOOL_CACHE/pnpm-store"
+          time pnpm install -r --frozen-lockfile --store-dir "$RUNNER_TOOL_CACHE/pnpm-store" --registry=https://registry.npmmirror.com
 
       - name: Build
         run: time pnpm run -r build
