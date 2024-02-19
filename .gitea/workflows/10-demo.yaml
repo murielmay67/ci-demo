@@ -4,6 +4,9 @@ run-name: ${{ github.actor }} is testing out Gitea Actions 🚀
 on:
   push:
     branches: ["main"]
+    paths:
+      - "vite-vue-ts/**"
+      - ".gitea/workflows/10-demo.yaml"
 
   # Allows you to run this workflow manually from the Actions tab
   workflow_dispatch:
@@ -30,15 +33,24 @@ jobs:
     runs-on: ubuntu-arm64
     steps:
       - run: |
+          set -x
           echo "🕒 date: $(date)"
-      - run: curl ip.sb
-      - run: env
-      - run: node -v
-      - run: echo ${{ runner.os }}
-      - run: echo $0
-      - run: time $(i=0; while (( i < 999992 )); do (( i ++ )); done) && exit;
-      - run: echo ${{ vars.SOME_VAR }}
-      - run: echo $SOME_VAR
+          curl ip.sb
+          env
+          node -v
+          echo "runner.os: ${{ runner.os }}"
+          echo $0
+          time $(i=0; while (( i < 999992 )); do (( i ++ )); done);
+          echo ${{ vars.SOME_VAR }}
+          echo $SOME_VAR
+      # - run: curl ip.sb
+      # - run: env
+      # - run: node -v
+      # - run: echo ${{ runner.os }}
+      # - run: echo $0
+      # - run: time $(i=0; while (( i < 999992 )); do (( i ++ )); done) && exit;
+      # - run: echo ${{ vars.SOME_VAR }}
+      # - run: echo $SOME_VAR
 
   Test-Checkout-1:
     runs-on: ubuntu-arm64
