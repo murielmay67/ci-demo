@@ -14,7 +14,7 @@ defaults:
   run:
     shell: bash
 jobs:
-  pnpm-image:
+  pnpm:
     # runs-on: pnpm-node20-arm64
     # labels="$labels,pnpm-node16-$arch:docker://yanhao98/pnpm:8-node16"
     # labels="$labels,pnpm-node18-$arch:docker://yanhao98/pnpm:8-node18"
