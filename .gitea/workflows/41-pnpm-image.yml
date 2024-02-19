@@ -29,11 +29,12 @@ jobs:
         run: pnpm run -r build
 
       - name: hashFiles
+        shell: bash
         run: |
           echo "START"
-          echo "${{ runner.os }}-pnpm-store-${{ hashFiles('vite-vue-ts/pnpm-lock.yaml') }}"
-          echo "${{ runner.os }}-pnpm-store-${{ hashFiles('vite-react-ts/pnpm-lock.yaml') }}"
-          echo "${{ runner.os }}-pnpm-store-${{ hashFiles('vite-vue-ts/pnpm-lock.yaml', 'vite-react-ts/pnpm-lock.yaml') }}"
-          echo "${{ runner.os }}-pnpm-store-${{ hashFiles('vite-react-ts/pnpm-lock.yaml', 'vite-vue-ts/pnpm-lock.yaml') }}"
-          echo "${{ runner.os }}-pnpm-store-${{ hashFiles('**/pnpm-lock.yaml') }}"
+          echo "-${{ hashFiles('vite-vue-ts/pnpm-lock.yaml') }}"
+          echo "-${{ hashFiles('vite-react-ts/pnpm-lock.yaml') }}"
+          echo "-${{ hashFiles('vite-vue-ts/pnpm-lock.yaml', 'vite-react-ts/pnpm-lock.yaml') }}"
+          echo "-${{ hashFiles('vite-react-ts/pnpm-lock.yaml', 'vite-vue-ts/pnpm-lock.yaml') }}"
+          echo "-${{ hashFiles('**/pnpm-lock.yaml') }}"
           echo "END"
