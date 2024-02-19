@@ -34,6 +34,7 @@ jobs:
     steps:
       - name: script
         run: |
+          time $(i=0; while (( i < 999992 )); do (( i ++ )); done);
           set -x
           echo "🕒 date: $(date)"
           curl ip.sb
@@ -41,7 +42,6 @@ jobs:
           node -v
           echo "runner.os: ${{ runner.os }}"
           echo $0
-          time $(i=0; while (( i < 999992 )); do (( i ++ )); done);
           echo ${{ vars.SOME_VAR }}
           echo $SOME_VAR
       # - run: curl ip.sb
