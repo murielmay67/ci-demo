@@ -10,6 +10,9 @@ on:
     paths:
       - "vite-vue-ts/**"
       - ".gitea/workflows/41-pnpm.yml"
+defaults:
+  run:
+    shell: bash
 jobs:
   pnpm-image:
     # runs-on: pnpm-node20-arm64
