@@ -28,7 +28,7 @@ jobs:
       - name: Build
         run: pnpm run -r build
 
-      - name: hashFiles
+      - name: TestHash
         shell: bash
         run: |
           echo "START"
