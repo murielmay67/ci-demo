@@ -17,19 +17,21 @@ jobs:
       image: yanhao98/pnpm:8-node16
     steps:
       - uses: actions/checkout@v4
-      # - name: Install and Build
-      #   run: |
-      #     # set -x
-      #     pnpm -v
-      #     pnpm install -r --frozen-lockfile --store-dir "$RUNNER_TOOL_CACHE/pnpm-store"
-      #     pnpm run -r build
-      #     echo "${{ runner.os }}-pnpm-store-${{ hashFiles('vite-vue-ts/pnpm-lock.yaml') }}"
-      #     echo "${{ runner.os }}-pnpm-store-${{ hashFiles('vite-react-ts/pnpm-lock.yaml') }}"
-      #     echo "${{ runner.os }}-pnpm-store-${{ hashFiles('vite-vue-ts/pnpm-lock.yaml', 'vite-react-ts/pnpm-lock.yaml') }}"
-      #     echo "${{ runner.os }}-pnpm-store-${{ hashFiles('vite-react-ts/pnpm-lock.yaml', 'vite-vue-ts/pnpm-lock.yaml') }}"
-      #     echo "${{ runner.os }}-pnpm-store-${{ hashFiles('**/pnpm-lock.yaml') }}"
+
       - name: Pnpm Version
         run: pnpm -v
+
       - name: Install Dependencies
         run: |
           pnpm install -r --frozen-lockfile --store-dir "$RUNNER_TOOL_CACHE/pnpm-store"
+
+      - name: Build
+        run: pnpm run -r build
+
+      - name: hashFiles
+        run: |
+          echo "${{ runner.os }}-pnpm-store-${{ hashFiles('vite-vue-ts/pnpm-lock.yaml') }}"
+          echo "${{ runner.os }}-pnpm-store-${{ hashFiles('vite-react-ts/pnpm-lock.yaml') }}"
+          echo "${{ runner.os }}-pnpm-store-${{ hashFiles('vite-vue-ts/pnpm-lock.yaml', 'vite-react-ts/pnpm-lock.yaml') }}"
+          echo "${{ runner.os }}-pnpm-store-${{ hashFiles('vite-react-ts/pnpm-lock.yaml', 'vite-vue-ts/pnpm-lock.yaml') }}"
+          echo "${{ runner.os }}-pnpm-store-${{ hashFiles('**/pnpm-lock.yaml') }}"
