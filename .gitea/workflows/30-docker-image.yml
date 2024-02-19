@@ -4,16 +4,15 @@ on:
   push:
     branches:
       - main
-    # paths:
-    #   - 'Dockerfile'
-    #   - '.github/workflows/docker-image.yml'
+    paths:
+      - 'Dockerfile'
+      - '.github/workflows/30-docker-image.yml'
 
   # Allows you to run this workflow manually from the Actions tab
   workflow_dispatch:
 
 jobs:
   build-and-push-docker-image:
-    if: false
     # https://docs.docker.com/build/ci/github-actions/multi-platform/
     runs-on: ubuntu-arm64
     container: catthehacker/ubuntu:act-latest
