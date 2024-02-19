@@ -1,9 +1,3 @@
-# [2 Ways to Use Your Own Docker Image in Github Actions](https://yonatankra.com/2-ways-to-use-your-docker-image-in-github-actions/)
-# https://github.com/g-plane/pnpm-docker
-# https://github.com/pnpm/action-setup?tab=readme-ov-file#use-cache-to-reduce-installation-time
-
-# act --workflows .gitea/workflows/41-pnpm-image.yml --pull=false
-
 on:
   push:
     branches: ["main"]
@@ -12,11 +6,17 @@ jobs:
   pnpm-image:
     runs-on: ubuntu-latest
     container:
-      image: yanhao98/pnpm:8-node16
+      # image: yanhao98/pnpm:8-node16
+      image: yanhao98/pnpm:8-node${{ matrix.node-version }}
+    strategy:
+      matrix:
+        node-version:
+          - 18
+          - 20
     steps:
       - uses: actions/checkout@v4
 
-      - name: Pnpm Version
+      - name: pnpm version
         run: pnpm -v
 
       - name: Install Dependencies

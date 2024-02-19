@@ -2,23 +2,33 @@
 # https://github.com/g-plane/pnpm-docker
 # https://github.com/pnpm/action-setup?tab=readme-ov-file#use-cache-to-reduce-installation-time
 
-# act --workflows .gitea/workflows/41-pnpm-image.yml --pull=false
+# act --workflows .gitea/workflows/41-pnpm.yml --pull=false
 
 on:
   push:
     branches: ["main"]
     paths:
       - "vite-vue-ts/**"
-      - ".gitea/workflows/41-pnpm-image.yml"
+      - ".gitea/workflows/41-pnpm.yml"
 jobs:
   pnpm-image:
-    runs-on: pnpm-arm64
-    container:
-      image: yanhao98/pnpm:8-node16
+    # runs-on: pnpm-node20-arm64
+    # labels="$labels,pnpm-node16-$arch:docker://yanhao98/pnpm:8-node16"
+    # labels="$labels,pnpm-node18-$arch:docker://yanhao98/pnpm:8-node18"
+    # labels="$labels,pnpm-node20-$arch:docker://yanhao98/pnpm:8-node20"
+    runs-on: pnpm-node${{ matrix.node-version }}-${{ matrix.arch }}
+    strategy:
+      matrix:
+        arch:
+          - arm64
+          - amd64
+        node-version:
+          - 18
+          - 20
     steps:
       - uses: actions/checkout@v4
 
-      - name: Pnpm Version
+      - name: pnpm version
         run: pnpm -v
 
       - name: Install Dependencies
