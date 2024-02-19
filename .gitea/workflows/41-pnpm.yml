@@ -39,7 +39,7 @@ jobs:
           time pnpm install -r --frozen-lockfile --store-dir "$RUNNER_TOOL_CACHE/pnpm-store"
 
       - name: Build
-        run: time pnpm build
+        run: time pnpm run -r build
 
       - name: TestHash
         run: |
