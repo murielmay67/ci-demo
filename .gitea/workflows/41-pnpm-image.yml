@@ -19,8 +19,9 @@ jobs:
       image: yanhao98/pnpm:8-node16
     steps:
       - uses: actions/checkout@v4
-      - run: |
-          set -x
+      - name: Install and Build
+        run: |
+          # set -x
           pnpm -v
           pnpm install -r --frozen-lockfile --store-dir "$RUNNER_TOOL_CACHE/pnpm-store"
           pnpm run -r build
