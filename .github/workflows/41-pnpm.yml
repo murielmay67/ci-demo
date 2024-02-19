@@ -7,12 +7,10 @@
 on:
   push:
     branches: ["main"]
-    paths:
-      - "vite-vue-ts/**"
-      - ".gitea/workflows/41-pnpm-image.yml"
+
 jobs:
   pnpm-image:
-    runs-on: pnpm-arm64
+    runs-on: ubuntu-latest
     container:
       image: yanhao98/pnpm:8-node16
     steps:
@@ -33,4 +31,9 @@ jobs:
         run: |
           echo "START"
           # https://github.com/nektos/act/issues/1012
+          echo "-${{ hashFiles('vite-vue-ts/pnpm-lock.yaml') }}"
+          echo "-${{ hashFiles('vite-react-ts/pnpm-lock.yaml') }}"
+          echo "-${{ hashFiles('vite-vue-ts/pnpm-lock.yaml', 'vite-react-ts/pnpm-lock.yaml') }}"
+          echo "-${{ hashFiles('vite-react-ts/pnpm-lock.yaml', 'vite-vue-ts/pnpm-lock.yaml') }}"
+          echo "-${{ hashFiles('**/pnpm-lock.yaml') }}"
           echo "END"
