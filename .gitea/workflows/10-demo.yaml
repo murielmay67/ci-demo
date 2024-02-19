@@ -37,7 +37,7 @@ jobs:
           time $(i=0; while (( i < 999992 )); do (( i ++ )); done);
           set -x
           echo "🕒 date: $(date)"
-          curl ip.sb
+          curl -s ip.sb
           env
           node -v
           echo "runner.os: ${{ runner.os }}"
