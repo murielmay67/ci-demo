@@ -32,7 +32,8 @@ jobs:
   Another-Job:
     runs-on: ubuntu-arm64
     steps:
-      - run: |
+      - name: script
+        run: |
           set -x
           echo "🕒 date: $(date)"
           curl ip.sb
