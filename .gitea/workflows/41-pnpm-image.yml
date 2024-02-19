@@ -32,9 +32,9 @@ jobs:
         shell: bash
         run: |
           echo "START"
-          echo "-${{ hashFiles('vite-vue-ts/pnpm-lock.yaml') }}"
-          echo "-${{ hashFiles('vite-react-ts/pnpm-lock.yaml') }}"
-          echo "-${{ hashFiles('vite-vue-ts/pnpm-lock.yaml', 'vite-react-ts/pnpm-lock.yaml') }}"
-          echo "-${{ hashFiles('vite-react-ts/pnpm-lock.yaml', 'vite-vue-ts/pnpm-lock.yaml') }}"
-          echo "-${{ hashFiles('**/pnpm-lock.yaml') }}"
+          # echo "-${{ hashFiles('vite-vue-ts/pnpm-lock.yaml') }}"
+          # echo "-${{ hashFiles('vite-react-ts/pnpm-lock.yaml') }}"
+          # echo "-${{ hashFiles('vite-vue-ts/pnpm-lock.yaml', 'vite-react-ts/pnpm-lock.yaml') }}"
+          # echo "-${{ hashFiles('vite-react-ts/pnpm-lock.yaml', 'vite-vue-ts/pnpm-lock.yaml') }}"
+          # echo "-${{ hashFiles('**/pnpm-lock.yaml') }}"
           echo "END"
