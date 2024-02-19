@@ -29,12 +29,8 @@ jobs:
         run: pnpm run -r build
 
       - name: TestHash
+        # https://github.com/nektos/act/issues/1012
         shell: bash
         run: |
           echo "START"
-          # echo "-${{ hashFiles('vite-vue-ts/pnpm-lock.yaml') }}"
-          # echo "-${{ hashFiles('vite-react-ts/pnpm-lock.yaml') }}"
-          # echo "-${{ hashFiles('vite-vue-ts/pnpm-lock.yaml', 'vite-react-ts/pnpm-lock.yaml') }}"
-          # echo "-${{ hashFiles('vite-react-ts/pnpm-lock.yaml', 'vite-vue-ts/pnpm-lock.yaml') }}"
-          # echo "-${{ hashFiles('**/pnpm-lock.yaml') }}"
           echo "END"
