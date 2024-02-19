@@ -1,3 +1,5 @@
+act --version
+
 # https://github.com/nektos/act#github_token
 # https://github.com/nektos/act#secrets
 act -s GITHUB_TOKEN="$(gh auth token)"

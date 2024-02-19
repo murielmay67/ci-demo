@@ -1,0 +1,31 @@
+# [2 Ways to Use Your Own Docker Image in Github Actions](https://yonatankra.com/2-ways-to-use-your-docker-image-in-github-actions/)
+# https://github.com/g-plane/pnpm-docker
+# https://github.com/pnpm/action-setup?tab=readme-ov-file#use-cache-to-reduce-installation-time
+
+# act --workflows .gitea/workflows/41-pnpm-image.yml --pull=false
+
+
+
+on:
+  push:
+    branches: ["main"]
+    paths:
+      - "vite-vue-ts/**"
+      - ".gitea/workflows/41-pnpm-image.yml"
+jobs:
+  pnpm-image:
+    runs-on: pnpm-arm64
+    container:
+      image: yanhao98/pnpm:8-node16
+    steps:
+      - uses: actions/checkout@v4
+      - run: |
+          set -x
+          pnpm -v
+          pnpm install -r --frozen-lockfile --store-dir "$RUNNER_TOOL_CACHE/pnpm-store"
+          pnpm run -r build
+          echo "${{ runner.os }}-pnpm-store-${{ hashFiles('vite-vue-ts/pnpm-lock.yaml') }}"
+          echo "${{ runner.os }}-pnpm-store-${{ hashFiles('vite-react-ts/pnpm-lock.yaml') }}"
+          echo "${{ runner.os }}-pnpm-store-${{ hashFiles('vite-vue-ts/pnpm-lock.yaml', 'vite-react-ts/pnpm-lock.yaml') }}"
+          echo "${{ runner.os }}-pnpm-store-${{ hashFiles('vite-react-ts/pnpm-lock.yaml', 'vite-vue-ts/pnpm-lock.yaml') }}"
+          echo "${{ runner.os }}-pnpm-store-${{ hashFiles('**/pnpm-lock.yaml') }}"
