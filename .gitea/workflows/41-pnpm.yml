@@ -33,13 +33,12 @@ jobs:
 
       - name: Install Dependencies
         run: |
-          pnpm install -r --frozen-lockfile --store-dir "$RUNNER_TOOL_CACHE/pnpm-store"
+          time $(pnpm install -r --frozen-lockfile --store-dir "$RUNNER_TOOL_CACHE/pnpm-store")
 
       - name: Build
-        run: pnpm run -r build
+        run: time pnpm build
 
       - name: TestHash
-        shell: bash
         run: |
           echo "START"
           # https://github.com/nektos/act/issues/1012
