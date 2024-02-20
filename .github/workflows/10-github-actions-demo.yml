@@ -23,13 +23,6 @@ jobs:
           ls ${{ github.workspace }}
       - run: echo "🍏 This job's status is ${{ job.status }}."
 
-  Another-Job:
-    runs-on: ubuntu-latest
-    steps:
-      - run: curl ip.sb
-      - run: env
-      - run: node -v
-
   Composite-Job:
     runs-on: ubuntu-latest
     steps:

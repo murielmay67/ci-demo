@@ -12,25 +12,11 @@ on:
   workflow_dispatch:
 
 jobs:
-  # Explore-Gitea-Actions:
-  #   runs-on: ubuntu-arm64
-  #   steps:
-  #     - run: |
-  #         echo "🕒 date: $(date)"
-  #     - run: curl ip.sb
-  #     - run: echo "🎉 The job was automatically triggered by a ${{ github.event_name }} event."
-  #     - run: echo "🐧 This job is now running on a ${{ runner.os }} server hosted by Gitea!"
-  #     - run: echo "🔎 The name of your branch is ${{ github.ref }} and your repository is ${{ github.repository }}."
-  #     - name: Check out repository code
-  #       uses: actions/checkout@v4
-  #     - run: echo "💡 The ${{ github.repository }} repository has been cloned to the runner."
-  #     - run: echo "🖥️ The workflow is now ready to test your code on the runner."
-  #     - name: List files in the repository
-  #       run: ls ${{ github.workspace }}
-  #     - run: echo "🍏 This job's status is ${{ job.status }}."
-
-  Another-Job:
-    runs-on: ubuntu-arm64
+  Explore-Job:
+    runs-on: ${{ matrix.os }}
+    strategy:
+      matrix:
+        os: [ubuntu-arm64, ubuntu-amd64]
     steps:
       - name: script
         run: |
@@ -38,22 +24,23 @@ jobs:
           set -x
           echo "🕒 date: $(date)"
           curl -s ip.sb
-          env
+          env | sort
           node -v
-          echo "runner.os: ${{ runner.os }}"
           echo $0
+          ps -p $$
+          echo $SHELL
           echo ${{ vars.SOME_VAR }}
           echo $SOME_VAR
-      # - run: curl ip.sb
-      # - run: env
-      # - run: node -v
-      # - run: echo ${{ runner.os }}
-      # - run: echo $0
-      # - run: time $(i=0; while (( i < 999992 )); do (( i ++ )); done) && exit;
-      # - run: echo ${{ vars.SOME_VAR }}
-      # - run: echo $SOME_VAR
+          echo "${{ github.actor }} is testing out Gitea Actions 🚀"
+          echo "🎉 The job was automatically triggered by a ${{ github.event_name }} event."
+          echo "🐧 This job is now running on a ${{ runner.os }} server hosted by Gitea!"
+          echo "🔎 The name of your branch is ${{ github.ref }} and your repository is ${{ github.repository }}."
+          echo "💡 The ${{ github.repository }} repository has been cloned to the runner."
+          ls ${{ github.workspace }}
+          echo "🍏 This job's status is ${{ job.status }}."
+      - run: echo "🍏 This job's status is ${{ job.status }}."
 
-  Test-Checkout-1:
+  sparse-checkout:
     runs-on: ubuntu-arm64
     steps:
       - uses: actions/checkout@v4
@@ -63,4 +50,3 @@ jobs:
           sparse-checkout-cone-mode: false
       - run: ls -al
       - run: ls -al vite-vue-ts
-      - run: free -m

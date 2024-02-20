@@ -11,7 +11,8 @@ act -s GITHUB_TOKEN=[insert token or leave blank and omit equals for secure inpu
 act --job Explore-GitHub-Actions --workflows .github/workflows/github-actions-demo.yml --dryrun
 act --job build --workflows .github/workflows/20-build-vue-project.yml --dryrun
 act --job Test-Checkout --workflows .gitea/workflows/10-demo.yaml -P ubuntu-latest-arm64=catthehacker/ubuntu:act-latest --pull=false --dryrun
-act --job Build --workflows .gitea/workflows/build-send-zip.yml -P ubuntu-latest=catthehacker/ubuntu:act-latest --pull=false --dryrun
+
+
 # ###########################################
 
 # Command structure:
