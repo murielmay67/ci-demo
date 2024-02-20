@@ -9,10 +9,11 @@ on:
     branches: ["main"]
     paths:
       - "vite-vue-ts/**"
-      - ".gitea/workflows/41-pnpm.yml"
-defaults:
-  run:
-    shell: bash
+      - "vite-react-ts/**"
+      - ".gitea/workflows/041-pnpm.yml"
+# defaults:
+#   run:
+#     shell: bash
 jobs:
   pnpm:
     # runs-on: pnpm-node20-arm64

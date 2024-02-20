@@ -11,7 +11,7 @@ on:
   push:
     branches: ["main"]
     paths:
-      - ".gitea/workflows/50-test-cache.yml"
+      - ".gitea/workflows/050-test-cache.yml"
 
   # Allows you to run this workflow manually from the Actions tab
   workflow_dispatch:
