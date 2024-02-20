@@ -41,6 +41,8 @@ jobs:
 
       - name: Build
         run: time pnpm run -r build
+        env:
+          VITE_BUILD_SHA: ${{ github.sha }}
 
       - name: TestHash
         run: |
