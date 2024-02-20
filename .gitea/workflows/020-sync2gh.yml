@@ -2,7 +2,6 @@ name: Sync to GitHub
 
 on:
   push:
-    branches: ["main"]
 
   # Allows you to run this workflow manually from the Actions tab
   workflow_dispatch:
@@ -21,3 +20,4 @@ jobs:
         run: |
           git remote set-url origin https://${{ secrets.GH_TOKEN_MURIELMAY67 }}@github.com/murielmay67/ci-demo.git
           git push origin main --force
+          git push origin --tags
