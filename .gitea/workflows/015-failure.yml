@@ -1,0 +1,39 @@
+# https://wangchujiang.com/github-actions
+
+# act --workflows .gitea/workflows/015-failure.yml -P ubuntu-arm64=catthehacker/ubuntu:act-latest --pull=false --eventpath act-event-file.json
+# act --workflows .gitea/workflows/015-failure.yml -P ubuntu-arm64=catthehacker/ubuntu:act-latest --pull=false
+on:
+  push:
+    paths:
+      - ".gitea/workflows/015-failure.yml"
+
+jobs:
+  Test-Job:
+    runs-on: ${{ matrix.os }}
+    strategy:
+      matrix:
+        os:
+          - ubuntu-arm64
+          - ubuntu-amd64
+    steps:
+      - name: 1️⃣
+        run: echo "CURRENT_TAG=${GITHUB_REF#refs/tags/}" >> $GITHUB_ENV
+
+      - name: 2️⃣ 判断是否是 tag
+        if: "!startsWith(github.ref, 'refs/tags/')"
+        run: exit 1
+
+      - name: 3️⃣ 失败才执行
+        if: failure()
+        run: |
+          echo "失败才执行"
+          echo "CURRENT_TAG is $CURRENT_TAG"
+
+      - name: 4️⃣ 失败成功都执行
+        # https://stackoverflow.com/questions/58858429/how-to-run-a-github-actions-step-even-if-the-previous-step-fails-while-still-f
+        if: always()
+        run: |
+          echo "失败成功都执行"
+          echo "CURRENT_TAG is $CURRENT_TAG"
+          echo "short sha is ${GITHUB_SHA::7}"
+          echo "file name is: $(TZ='Asia/Shanghai' date +'%m%d_%H%M')_commit_${GITHUB_SHA::7}.tar.gz"

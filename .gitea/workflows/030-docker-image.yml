@@ -45,3 +45,19 @@ jobs:
           username: ${{ secrets.DOCKERHUB_USERNAME }}
           password: ${{ secrets.DOCKERHUB_TOKEN }}
           repository: murielmay67761/ci-demo-gitea
+
+# - name: Extract metadata (tags, labels) for Docker
+#   id: meta
+#   uses: docker/metadata-action@v4
+#   with:
+#     images: ${{ env.REGISTRY }}/${{ github.repository }}
+#     tags: |
+#       type=sha,format=short,prefix=
+
+# - name: Build and push Docker image
+#   uses: docker/build-push-action@v4
+#   with:
+#     context: .
+#     push: true
+#     tags: ${{ steps.meta.outputs.tags }}
+#     labels: ${{ steps.meta.outputs.labels }}
