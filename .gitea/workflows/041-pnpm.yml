@@ -48,4 +48,5 @@ jobs:
         run: |
           echo "START"
           # https://github.com/nektos/act/issues/1012
+          echo "-${{ hashFiles('**/pnpm-lock.yaml') }}"
           echo "END"
