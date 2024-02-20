@@ -3,6 +3,8 @@ run-name: ${{ github.actor }} is testing out Gitea Actions 🚀
 
 on:
   push:
+    tags:
+      - "*"
     branches: ["main"]
     paths:
       - "vite-vue-ts/**"
