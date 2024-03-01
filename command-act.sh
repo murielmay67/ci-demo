@@ -1,4 +1,5 @@
 act --version
+curl --proto '=https' --tlsv1.2 -sSf https://raw.githubusercontent.com/nektos/act/master/install.sh | sudo bash
 
 # https://github.com/nektos/act#github_token
 # https://github.com/nektos/act#secrets
