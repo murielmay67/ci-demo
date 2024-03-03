@@ -4,10 +4,14 @@
 version: 2
 updates:
   - package-ecosystem: "github-actions"
+    assignees:
+      - "murielmay67"
     directory: "/"
     schedule:
-      interval: "weekly"
+      interval: "daily"
   - package-ecosystem: "docker"
+    assignees:
+        - "murielmay67"
     directory: "/"
     schedule:
       interval: "daily"
