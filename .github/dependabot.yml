@@ -1,5 +1,6 @@
 # https://docs.github.com/code-security/dependabot/dependabot-version-updates/configuration-options-for-the-dependabot.yml-file
 # [combine-prs-workflow](https://github.com/hrvey/combine-prs-workflow)
+# [renovate](https://github.com/renovatebot/renovate)
 
 version: 2
 updates:
