@@ -3,6 +3,7 @@ name: GitHub Actions Demo
 run-name: ${{ github.actor }} is testing out GitHub Actions 🚀
 on:
   push:
+    branches: [ main ]
   # 允许你从 Actions 选项卡手动运行此工作流程
   workflow_dispatch:
 
