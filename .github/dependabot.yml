@@ -29,6 +29,8 @@ updates:
     groups:
       production-dependencies:
         dependency-type: "production"
+      development-dependencies:
+        dependency-type: "development"
 
   - package-ecosystem: "npm"
     directory: "/vite-react-ts"
