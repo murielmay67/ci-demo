@@ -26,7 +26,7 @@ updates:
       - "murielmay67"
     schedule:
       interval: "daily"
-    groups:
+    groups: # https://mglaman.dev/blog/my-dependabot-configuration-drupal-and-other-php-projects
       production-dependencies:
         dependency-type: "production"
       development-dependencies:
@@ -34,6 +34,16 @@ updates:
 
   - package-ecosystem: "npm"
     directory: "/vite-react-ts"
+    groups:
+      production-dependencies:
+        dependency-type: "production"
+        update-types:
+          # https://semver.org/lang/zh-CN/
+          # - "major"
+          - "minor"
+          - "patch"
+      development-dependencies:
+        dependency-type: "development"
     assignees:
       - "murielmay67"
     schedule:
