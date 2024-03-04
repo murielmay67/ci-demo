@@ -12,21 +12,27 @@ updates:
     directory: "/"
     schedule:
       interval: "daily"
+
   - package-ecosystem: "docker"
     assignees:
-        - "murielmay67"
+      - "murielmay67"
     directory: "/"
     schedule:
       interval: "daily"
+
   - package-ecosystem: "npm"
     directory: "/vite-vue-ts"
     assignees:
-        - "murielmay67"
+      - "murielmay67"
     schedule:
       interval: "daily"
+    groups:
+      production-dependencies:
+        dependency-type: "production"
+
   - package-ecosystem: "npm"
     directory: "/vite-react-ts"
     assignees:
-        - "murielmay67"
+      - "murielmay67"
     schedule:
       interval: "daily"
