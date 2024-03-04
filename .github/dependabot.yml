@@ -22,6 +22,8 @@ updates:
 
   - package-ecosystem: "npm"
     directory: "/vite-vue-ts"
+    labels:
+      - "vite-vue-ts"
     assignees:
       - "murielmay67"
     schedule:
@@ -39,6 +41,8 @@ updates:
 
   - package-ecosystem: "npm"
     directory: "/vite-react-ts"
+    labels:
+      - "vite-react-ts"
     groups:
       production-dependencies:
         dependency-type: "production"
