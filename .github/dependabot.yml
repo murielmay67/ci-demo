@@ -16,7 +16,7 @@ updates:
   - package-ecosystem: "docker"
     assignees:
       - "murielmay67"
-    directory: "/"
+    directory: "/docker"
     schedule:
       interval: "daily"
 
