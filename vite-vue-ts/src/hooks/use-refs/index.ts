@@ -2,20 +2,12 @@
 
 import { getCurrentInstance, reactive } from "vue"
 
-export function useRefs<
-  T extends Record<string, any>,
-  R extends Record<string, any> = {
-    [k in keyof T]: InstanceType<T[k]>
-  },
->() {
+export const useRefs = <T extends object>() => {
   const instance = getCurrentInstance()
-  if (!instance) {
-    console.warn('useRefs() must be called within the setup() function')
-  }
+  if (!instance) console.warn('useRefs() must be called within the setup() function')
 
-  const refs = reactive<R>({} as R)
+  const refs = reactive<T>({} as T)
   const toRef = (refName: keyof T) => (el: any) => ((refs as T)[refName as keyof T] = el)
-
   return {
     refs,
     toRef,

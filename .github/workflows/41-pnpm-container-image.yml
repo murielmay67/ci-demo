@@ -32,6 +32,8 @@ jobs:
       
       - name: Build vite-vue-ts
         run: time pnpm run build
+        env:
+          VITE_BUILD_SHA: ${{ github.sha }}
         working-directory: vite-vue-ts
 
       - name: TestHash
