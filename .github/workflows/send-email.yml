@@ -3,17 +3,26 @@ on:
   push:
     branches:
       - main
-      
+
   # Allows you to run this workflow manually from the Actions tab
   workflow_dispatch:
+    inputs:
+      send-mail:
+        description: "Send mail"
+        type: boolean
+        default: false
 
 jobs:
   send-mail:
-    if: false
+    if: ${{ github.event.inputs.send-mail == 'true' }}
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
+      - run: |
+          set -x
+          echo ${{ github.event.inputs.send-mail }}
+          echo ${{ github.event.inputs.send-mail == 'true' }}
 
+      - uses: actions/checkout@v4
       - name: Send mail
         uses: dawidd6/action-send-mail@v3
         with:
