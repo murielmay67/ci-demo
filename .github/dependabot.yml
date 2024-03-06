@@ -37,15 +37,15 @@ updates:
     labels:
       - "vite-react-ts"
     groups: # https://mglaman.dev/blog/my-dependabot-configuration-drupal-and-other-php-projects
-      production-dependencies:
+      dependencies:
         dependency-type: "production"
-      development-dependencies:
+      dev-dependencies:
         dependency-type: "development"
-        update-types:
-          # https://semver.org/lang/zh-CN/
-          # - "major"
-          - "minor"
-          - "patch"
+        # update-types:
+        #   # https://semver.org/lang/zh-CN/
+        #   # - "major"
+        #   - "minor"
+        #   - "patch"
     assignees:
       - "murielmay67"
     schedule:

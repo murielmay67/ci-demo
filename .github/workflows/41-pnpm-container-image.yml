@@ -27,7 +27,9 @@ jobs:
           time pnpm install -r --frozen-lockfile --store-dir "$RUNNER_TOOL_CACHE/pnpm-store"
 
       - name: Build vite-react-ts
-        run: time pnpm run build
+        run: | 
+          pnpm run lint
+          time pnpm run build
         working-directory: vite-react-ts
       
       - name: Build vite-vue-ts
