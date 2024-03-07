@@ -33,10 +33,26 @@ jobs:
       - uses: actions/checkout@v4
 
       - run: pnpm -v
+      
+      - name: Set pnpm store
+        run: |
+          set -x
+          pnpm store path
+          pnpm config set store-dir "$RUNNER_TOOL_CACHE/pnpm-store"
+          pnpm config set registry https://registry.npmmirror.com
+          pnpm store path
 
       - name: Install Dependencies
         run: |
-          time pnpm install -r --frozen-lockfile --store-dir "$RUNNER_TOOL_CACHE/pnpm-store" --registry=https://registry.npmmirror.com
+          time pnpm install -r --frozen-lockfile
+          # --store-dir "$RUNNER_TOOL_CACHE/pnpm-store" --registry=https://registry.npmmirror.com
+      
+      - name: depcheck
+        run: |
+          set -x
+          npx depcheck || true
+          node .depcheck.js
+        working-directory: vite-vue-ts
 
       - name: Build
         run: time pnpm run -r build
