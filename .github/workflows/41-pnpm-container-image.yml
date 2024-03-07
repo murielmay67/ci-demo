@@ -25,8 +25,11 @@ jobs:
 
       - name: Set pnpm store
         run: |
+          set -x
+          pnpm store path
           pnpm config set store-dir "$RUNNER_TOOL_CACHE/pnpm-store"
           pnpm config set registry https://registry.npmmirror.com
+          pnpm store path
 
       - name: Install Dependencies
         run: |
@@ -53,7 +56,9 @@ jobs:
           # https://github.com/nektos/act/issues/1012
           echo "-${{ hashFiles('vite-vue-ts/pnpm-lock.yaml') }}"
           echo "-${{ hashFiles('vite-react-ts/pnpm-lock.yaml') }}"
+
           echo "-${{ hashFiles('vite-vue-ts/pnpm-lock.yaml', 'vite-react-ts/pnpm-lock.yaml') }}"
           echo "-${{ hashFiles('vite-react-ts/pnpm-lock.yaml', 'vite-vue-ts/pnpm-lock.yaml') }}"
+
           echo "-${{ hashFiles('**/pnpm-lock.yaml') }}"
           echo "END"
