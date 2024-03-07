@@ -1,0 +1,8 @@
+# https://github.com/depcheck/depcheck#usage
+# pnpm add json -g
+# npx depcheck --json | json
+
+# npx depcheck
+
+# ignores: ["eslint", "babel-*"]
+# skip-missing: true

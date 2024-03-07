@@ -10,7 +10,7 @@ on:
     paths:
       - "vite-vue-ts/**"
       - "vite-react-ts/**"
-      - ".gitea/workflows/041-pnpm.yml"
+      - ".gitea/workflows/041-pnpm-container-image.yml"
 # defaults:
 #   run:
 #     shell: bash
@@ -25,15 +25,14 @@ jobs:
       matrix:
         arch:
           - arm64
-          - amd64
+          # - amd64
         node-version:
           - 18
           - 20
     steps:
       - uses: actions/checkout@v4
 
-      - name: pnpm version
-        run: pnpm -v
+      - run: pnpm -v
 
       - name: Install Dependencies
         run: |
@@ -48,5 +47,9 @@ jobs:
         run: |
           echo "START"
           # https://github.com/nektos/act/issues/1012
+          echo "-${{ hashFiles('vite-vue-ts/pnpm-lock.yaml') }}"
+          echo "-${{ hashFiles('vite-react-ts/pnpm-lock.yaml') }}"
+          echo "-${{ hashFiles('vite-vue-ts/pnpm-lock.yaml', 'vite-react-ts/pnpm-lock.yaml') }}"
+          echo "-${{ hashFiles('vite-react-ts/pnpm-lock.yaml', 'vite-vue-ts/pnpm-lock.yaml') }}"
           echo "-${{ hashFiles('**/pnpm-lock.yaml') }}"
           echo "END"

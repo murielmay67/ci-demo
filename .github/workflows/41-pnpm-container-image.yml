@@ -1,3 +1,5 @@
+# act --workflows .github/workflows/41-pnpm-container-image.yml --pull=false
+
 on:
   push:
     branches: ["main"]
@@ -19,24 +21,30 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
-      - name: pnpm version
-        run: pnpm -v
+      - run: pnpm -v
+
+      - name: Set pnpm store
+        run: |
+          pnpm config set store-dir "$RUNNER_TOOL_CACHE/pnpm-store"
+          pnpm config set registry https://registry.npmmirror.com
 
       - name: Install Dependencies
         run: |
-          time pnpm install -r --frozen-lockfile --store-dir "$RUNNER_TOOL_CACHE/pnpm-store"
-
-      - name: Build vite-react-ts
-        run: | 
-          pnpm run lint
-          time pnpm run build
-        working-directory: vite-react-ts
+          time pnpm install -r --frozen-lockfile
       
-      - name: Build vite-vue-ts
-        run: time pnpm run build
+      - name: depcheck
+        run: |
+          set -x
+          npx depcheck || true
+          node .depcheck.js
+        working-directory: vite-vue-ts
+
+      - name: Build
+        run: |
+          time pnpm run -r lint
+          time pnpm run -r build
         env:
           VITE_BUILD_SHA: ${{ github.sha }}
-        working-directory: vite-vue-ts
 
       - name: TestHash
         shell: bash
