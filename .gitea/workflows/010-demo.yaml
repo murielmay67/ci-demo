@@ -40,7 +40,6 @@ jobs:
           ls ${{ github.workspace }}
           echo "🍏 This job's status is ${{ job.status }}."
       - run: echo "🍏 This job's status is ${{ job.status }}."
-
       # https://stackoverflow.com/questions/59810838/how-to-get-the-short-sha-for-the-github-workflow
       - name: Set outputs
         id: vars
@@ -49,6 +48,8 @@ jobs:
         run: echo ${{ steps.vars.outputs.sha_short }}
       - name: Step
         run: echo ${GITHUB_SHA::7}
+      - name: Sleep
+        run: sleep 180
 
   sparse-checkout:
     runs-on: ubuntu-arm64

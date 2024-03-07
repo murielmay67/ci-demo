@@ -2,10 +2,7 @@ name: Sync to GitHub
 
 on:
   push:
-
-  # Allows you to run this workflow manually from the Actions tab
-  workflow_dispatch:
-
+    branches: ["main"]
 jobs:
   sync-to-github:
     runs-on: ubuntu-arm64
