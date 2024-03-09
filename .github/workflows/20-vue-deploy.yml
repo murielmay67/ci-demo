@@ -65,6 +65,10 @@ jobs:
           cat ./dist/index.html
         working-directory: ./vite-vue-ts
 
+      # https://github.com/Tencent/tdesign/blob/main/.github/workflows/preview.yml
+      - name: Surge
+        run: npx surge vite-vue-ts/dist https://ci-demo-surge.19980901.xyz --token ${{ secrets.SURGE_TOKEN }}
+
       - name: Zip dist
         run: |
           time(zip -Xrq dist.zip ./vite-vue-ts/dist)
