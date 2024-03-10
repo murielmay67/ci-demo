@@ -69,7 +69,7 @@ jobs:
       - name: Surge
         run: | 
           npx surge vite-vue-ts/dist https://ci-demo-surge.19980901.xyz --token ${{ secrets.SURGE_TOKEN }}
-          npx surge vite-vue-ts/dist ci-demo.surge.oo1.dev
+          npx surge vite-vue-ts/dist ci-demo.surge.oo1.dev --token ${{ secrets.SURGE_TOKEN }}
 
       - name: Zip dist
         run: |
