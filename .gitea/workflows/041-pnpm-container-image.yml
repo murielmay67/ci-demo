@@ -20,17 +20,12 @@ jobs:
     # labels="$labels,pnpm-node16-$arch:docker://yanhao98/pnpm:8-node16"
     # labels="$labels,pnpm-node18-$arch:docker://yanhao98/pnpm:8-node18"
     # labels="$labels,pnpm-node20-$arch:docker://yanhao98/pnpm:8-node20"
-    # runs-on: pnpm-node${{ matrix.node-version }}-${{ matrix.arch }}
-    runs-on: ubuntu-arm64
-    container:
-      image: yanhao98/pnpm:8-node${{ matrix.node-version }}
-      volumes:
-        - /Users/yanhao2023/Downloads/pnpm-store:/pnpm-store
+    runs-on: pnpm-node${{ matrix.node-version }}-${{ matrix.arch }}
     strategy:
       matrix:
-        # arch:
-        #   - arm64
-        #   # - amd64
+        arch:
+          - arm64
+          # - amd64
         node-version:
           - 18
           - 20
@@ -38,13 +33,12 @@ jobs:
       - uses: actions/checkout@v4
 
       - run: pnpm -v
-      
+
       - name: Set pnpm store
         run: |
           set -x
           pnpm store path
-          # pnpm config set store-dir "$RUNNER_TOOL_CACHE/pnpm-store"
-          pnpm config set store-dir "/pnpm-store"
+          pnpm config set store-dir "$RUNNER_TOOL_CACHE/pnpm-store"
           pnpm config set registry https://registry.npmmirror.com
           pnpm store path
 
@@ -52,7 +46,7 @@ jobs:
         run: |
           time pnpm install -r --frozen-lockfile
           # --store-dir "$RUNNER_TOOL_CACHE/pnpm-store" --registry=https://registry.npmmirror.com
-      
+
       - name: depcheck
         run: |
           set -x
