@@ -32,7 +32,7 @@ jobs:
     #     working-directory: ./vite-vue-ts
     steps:
       - uses: actions/checkout@v4
-      
+
       - uses: pnpm/action-setup@v3
         with:
           version: 8
@@ -46,11 +46,11 @@ jobs:
 
       - name: 获取 package.json 的 name 字段
         run: |
-            # 使用 Node.js 执行一段简单的 JavaScript 来读取 package.json
-            NAME=$(node -pe "require('./vite-vue-ts/package.json').name")
-            echo "Package name: $NAME"
-            # 使用 GitHub Actions 的环境变量功能来使名称在后续步骤中可用
-            echo "PACKAGE_NAME=$NAME" >> $GITHUB_ENV
+          # 使用 Node.js 执行一段简单的 JavaScript 来读取 package.json
+          NAME=$(node -pe "require('./vite-vue-ts/package.json').name")
+          echo "Package name: $NAME"
+          # 使用 GitHub Actions 的环境变量功能来使名称在后续步骤中可用
+          echo "PACKAGE_NAME=$NAME" >> $GITHUB_ENV
 
       - name: 使用 package 名称
         run: |
@@ -66,8 +66,9 @@ jobs:
         working-directory: ./vite-vue-ts
 
       # https://github.com/Tencent/tdesign/blob/main/.github/workflows/preview.yml
+      # npx surge token
       - name: Surge
-        run: | 
+        run: |
           npx surge vite-vue-ts/dist https://ci-demo-surge.19980901.xyz --token ${{ secrets.SURGE_TOKEN }}
           npx surge vite-vue-ts/dist https://ci-demo.surge.sh --token ${{ secrets.SURGE_TOKEN }}
           npx surge vite-vue-ts/dist ci-demo.surge.oo1.dev --token ${{ secrets.SURGE_TOKEN }}
