@@ -37,6 +37,7 @@ jobs:
       - name: Set pnpm store
         run: |
           set -x
+          echo "RUNNER_TOOL_CACHE: $RUNNER_TOOL_CACHE"
           pnpm store path
           # pnpm config set store-dir "$RUNNER_TOOL_CACHE/pnpm-store"
           pnpm config set registry https://registry.npmmirror.com
