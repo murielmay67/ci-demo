@@ -2,7 +2,7 @@
 # https://github.com/g-plane/pnpm-docker
 # https://github.com/pnpm/action-setup?tab=readme-ov-file#use-cache-to-reduce-installation-time
 
-# act --workflows .gitea/workflows/41-pnpm.yml --pull=false
+# act --workflows .gitea/workflows/041-pnpm-container-image.yml -P pnpm-node18-arm64=pnpm:8.15.0-node18 --pull=false
 
 on:
   push:
@@ -27,26 +27,25 @@ jobs:
           - arm64
           # - amd64
         node-version:
-          # - 18
-          - 20
+          - 18
+          # - 20
     steps:
       - uses: actions/checkout@v4
 
       - run: pnpm -v
 
-      - name: Set pnpm store
-        run: |
-          set -x
-          echo "RUNNER_TOOL_CACHE: $RUNNER_TOOL_CACHE"
-          pnpm store path
-          # pnpm config set store-dir "$RUNNER_TOOL_CACHE/pnpm-store"
-          pnpm config set registry https://registry.npmmirror.com
-          pnpm store path
+      # - name: Set pnpm store
+      #   run: |
+      #     set -x
+      #     cat ~/.config/pnpm/rc
+      #     cat ~/.npmrc
+      #     pnpm store path
+      #     exit 1
 
       - name: Install Dependencies
         run: |
           time pnpm install -r --frozen-lockfile
-          # --store-dir "$RUNNER_TOOL_CACHE/pnpm-store" --registry=https://registry.npmmirror.com
+        # --store-dir "$RUNNER_TOOL_CACHE/pnpm-store" --registry=https://registry.npmmirror.com
 
       - name: depcheck
         run: |
