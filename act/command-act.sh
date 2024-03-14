@@ -12,7 +12,7 @@ act -s GITHUB_TOKEN=[insert token or leave blank and omit equals for secure inpu
 # ###########################################
 # 运行指定的 Job
 act --job Explore-GitHub-Actions --workflows .github/workflows/github-actions-demo.yml --dryrun
-act --job build --workflows .github/workflows/20-build-vue-project.yml --dryrun
+act --job build --workflows .github/workflows/20-build-vue-project.yml --pull=false --dryrun
 act --job Test-Checkout --workflows .gitea/workflows/10-demo.yaml -P ubuntu-latest-arm64=catthehacker/ubuntu:act-latest --pull=false --dryrun
 act --workflows .gitea/workflows/vercel.yml -P pnpm-node18-arm64=yanhao98/pnpm:8-node18 --pull=true
 
