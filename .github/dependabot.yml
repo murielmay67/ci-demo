@@ -22,8 +22,6 @@ updates:
 
   - package-ecosystem: "npm"
     directory: "/vite-vue-ts"
-    labels:
-      - "vite-vue-ts"
     assignees:
       - "murielmay67"
     schedule:
@@ -34,8 +32,6 @@ updates:
 
   - package-ecosystem: "npm"
     directory: "/vite-react-ts"
-    labels:
-      - "vite-react-ts"
     groups: # https://mglaman.dev/blog/my-dependabot-configuration-drupal-and-other-php-projects
       dependencies:
         dependency-type: "production"
@@ -46,6 +42,10 @@ updates:
         #   # - "major"
         #   - "minor"
         #   - "patch"
+      non-breaking:
+        update-types:
+          - "minor"
+          - "patch"
     assignees:
       - "murielmay67"
     schedule:
