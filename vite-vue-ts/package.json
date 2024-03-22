@@ -15,8 +15,8 @@
     "@vitejs/plugin-vue": "^5.0.4",
     "@yanhao98/build-and-preview": "^1.0.0",
     "depcheck": "^1.4.7",
-    "typescript": "^5.4.2",
-    "vite": "^5.1.6",
-    "vue-tsc": "^2.0.6"
+    "typescript": "^5.4.3",
+    "vite": "^5.2.3",
+    "vue-tsc": "^2.0.7"
   }
 }
