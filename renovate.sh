@@ -1,3 +1,4 @@
+# https://developer.mend.io/
 # https://docs.renovatebot.com/modules/platform/gitea/
 # https://www.cnblogs.com/Gitea/p/renovate.html
 
