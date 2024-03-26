@@ -8,4 +8,5 @@ docker run --rm \
     -e RENOVATE_GIT_AUTHOR='Renovate Bot <gitea-renovatebot@oo1.dev>' \
     -e RENOVATE_PLATFORM=gitea \
     -e RENOVATE_TOKEN= \
+    -e GITHUB_COM_TOKEN= \
     renovate/renovate:37
